@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:48:09 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/11 16:56:47 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/12 15:36:01 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ void	high_five(int *stackA, int *stackB, int ac)
 		i++;
 	}
 	push_b(stackA, stackB, ac, 1);
-	print_table(stackA, stackB);
+//	print_table(stackA, stackB);
 	make_four(stackA, stackB, ac);
 	push_a(stackA, stackB, ac, 1);
 }
@@ -418,7 +418,7 @@ void	insert_sort(int *stackA, int *stackB, t_data *data)
 	i = 0;
 	while (data->remain_b > 0)
 	{
-		if (stackB[0] != data->min && min_is_in(stackB, data->min))
+		if ((stackB[0] != data->min || stackB[0] == data->min) && min_is_in(stackB, data->min))
 		{
 			if (ra_or_rra(stackB, data->min, data) == 1)
 			{
@@ -433,7 +433,7 @@ void	insert_sort(int *stackA, int *stackB, t_data *data)
 			push_a(stackA, stackB, data->ac, 1);
 			data->remain_b--;
 		}
-		if (stackB[0] != data->max && max_is_in(stackB, data->max))
+		if ((stackB[0] != data->max || stackB[0] == data->max) && max_is_in(stackB, data->max))
 		{
 			if (ra_or_rra(stackB, data->max, data) == 1)
 			{
@@ -448,31 +448,36 @@ void	insert_sort(int *stackA, int *stackB, t_data *data)
 			push_a(stackA, stackB, data->ac, 1);
 			data->remain_b--;
 			rotate_a(stackA, 1);
-//			print_table(stackA, stackB);
 		}
 		if (max_is_in(stackB, data->max) == 0 && min_is_in(stackB, data->min) == 0)
 		{
-//			printf("insert sort 2 printtable\n");
 			i = 0;
 			while (stackB[0] > stackA[0])
 			{
 				rotate_a(stackA, 1);
 				i++;
 			}
-//			print_table(stackA, stackB);
-//			printf("remain_b = %d, stackA[ac-2 - remain_b] = %d\n", data->remain_b, stackA[data->ac - 2 - data->remain_b]);
-			if (stackB[0] < stackA[0] && stackB[0] > stackA[data->ac - 2 - data->remain_b])
+			if (stackB[0] < stackA[0] && stackB[0] < stackA[data->ac-2-data->remain_b])
+			{
+				while (stackB[0] < stackA[0] && stackB[0] < stackA[data->ac-2-data->remain_b])
+					reverse_a(stackA, 1);
+			}
+			if (stackB[0] < stackA[0] && stackB[0] > stackA[data->ac-2-data->remain_b])
+				push_a(stackA, stackB, data->ac, 1);
+/*			if (stackB[0] < stackA[0] && stackB[0] > stackA[data->ac - 2 - data->remain_b])
 				push_a(stackA, stackB, data->ac, 1);
 			else if (stackB[0] < stackA[0] && stackB[0] < stackA[data->ac - 2 - data->remain_b])
 			{
+				printf("algo de reverse\n");
 				while (stackB[0] < stackA[0] && stackB[0] < stackA[data->ac - 2 - data->remain_b])
 					reverse_a(stackA, 1);
 				push_a(stackA, stackB, data->ac, 1);
 			}
-//			print_table(stackA, stackB);
+			print_table(stackA, stackB);
 			while (i-- > 0)
 				reverse_a(stackA , 1);
-//			print_table(stackA, stackB);
+			print_table(stackA, stackB);
+*/
 			data->remain_b--;
 		}
 	}
@@ -558,15 +563,8 @@ void	make_all(int *stackA, int *stackB, int ac)
 			x++;
 		}
 	}
-	//work to do : coder si RA ou RRA
-
-
 	push_b_only_bads(stackA, stackB, list, &data);
-//	print_table(stackA, stackB);
-
-//	printf("remain b : %d\n", data.remain_b);
 	insert_sort(stackA, stackB, &data);
-//	print_table(stackA, stackB);
 }
 
 int 	solve(int *stackA, int *stackB, int ac)
