@@ -259,40 +259,38 @@ void	high_five(long int *stackA, long int *stackB, int ac)
 	int i;
 	int count;
 	t_data data;
-	long int s_ghost[1000] = {};
 	long int s_med[1000] = {};
 
 	i = 0;
-	copy_stack(s_ghost, stackA, ac);
-	copy_stack(s_med, stackA, ac);
-	sort_stack(s_ghost, &data);
 	count = 0;
+	b_pas_zero(s_med);
+	copy_stack(s_med, stackA, ac);
+
+	find_min_and_max_in_stack(stackA, stackB, &data);
 	//regarder si RA ou RRA
-	while  (i < (ac - 1) && (s_med[0] != s_ghost[0]))
+	while (i < (ac - 1) && (s_med[0] != data.min_du_stack))
 	{
 		rotate_a(s_med, 0);
 		count++;
-		if (count > ((ac - 1) /2))
-		{
-			count = 0;
-			break ;
-		}
 		i++;
 	}
-	while (i < (ac - 1) && (stackA[0] != s_ghost[0]) && count > 0)
+	if (count > ((ac - 1) /2))
+		count = -1;
+	i = 0;
+	while (i < (ac - 1) && (stackA[0] != data.min_du_stack))
 	{
-		rotate_a(stackA, 1);
-		i++;
-	}
-	while  (i < (ac - 1) && (stackA[0] != s_ghost[0]) && count == 0)
-	{
-		reverse_a(stackA, 1);
+		if (count > 0)
+			rotate_a(stackA, 1);
+		else if (count < 0)
+			reverse_a(stackA, 1);
 		i++;
 	}
 	push_b(stackA, stackB, ac, 1);
-	make_four(stackA, stackB, ac);
+	if (!(stackA[0] < stackA[1] && stackA[1] < stackA[2] && stackA[2] < stackA[3]))
+		make_four(stackA, stackB, ac);
 	push_a(stackA, stackB, ac, 1);
 }
+
 /* // algo de tri utilisant un stack fantome trie
 void	make_all(long int *stackA, long int *stackB, int ac)
 {
