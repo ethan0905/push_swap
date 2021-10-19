@@ -6,18 +6,18 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:48:09 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/12 15:36:01 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/19 15:42:12 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	make_two(int *stackA)
+void	make_two(long int *stackA)
 {
 	reverse_a(stackA, 1);
 }
 
-void	make_three(int *stackA)
+void	make_three(long int *stackA)
 {
 	if (stackA[0] < stackA[1])
 	{
@@ -43,7 +43,7 @@ void	make_three(int *stackA)
 	}
 }
 
-void	make_four(int *stackA, int *stackB, int ac)
+void	make_four(long int *stackA, long int *stackB, int ac)
 {
 	//cas commencant par quatre
 	if (stackA[0] > stackA[1] && stackA[0] > stackA[2] && stackA[0] > stackA[3])
@@ -89,37 +89,37 @@ void	make_four(int *stackA, int *stackB, int ac)
 	else if (stackA[0] < stackA[1] && stackA[0] < stackA[2] && stackA[0] < stackA[3])
 	{
 		if (stackA[1] < stackA[3] && stackA[3] < stackA[2])
-		{
+		{	
 			reverse_a(stackA, 1);
 			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);				
 			reverse_a(stackA, 1);
 			reverse_a(stackA, 1);
 		}
 		else if (stackA[1] < stackA[3] && stackA[3] > stackA[2])
 		{
 			rotate_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);				
 			reverse_a(stackA, 1);
 		}
 		else if (stackA[1] > stackA[3] && stackA[3] < stackA[2] && stackA[1] < stackA[2])
 		{
 			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);			
 		}
 		else if (stackA[1] > stackA[2] && stackA[1] > stackA[3])
 		{
 			if (stackA[2] < stackA[3])
 			{
 				reverse_a(stackA, 1);
-				swap_a(stackA, 1);
+				swap_a(stackA, 1);	
 				reverse_a(stackA, 1);
-				swap_a(stackA, 1);
+				swap_a(stackA, 1);			
 			}
 			else
 			{
 				push_b(stackA, stackB, ac, 1);
-				swap_a(stackA, 1);
+				swap_a(stackA, 1);	
 				reverse_a(stackA, 1);
 				push_a(stackA, stackB, ac, 1);
 			}
@@ -130,12 +130,12 @@ void	make_four(int *stackA, int *stackB, int ac)
 	else if (stackA[0] > stackA[1] && stackA[0] < stackA[2] && stackA[0] < stackA[3])
 	{
 		if (stackA[2] < stackA[3])
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 		else
 		{
 			push_b(stackA, stackB, ac, 1);
 			push_b(stackA, stackB, ac, 1);
-			swap_ab(stackA, stackB, 1);
+			swap_ab(stackA, stackB, 1);	
 			push_a(stackA, stackB, ac, 1);
 			push_a(stackA, stackB, ac, 1);
 		}
@@ -145,14 +145,14 @@ void	make_four(int *stackA, int *stackB, int ac)
 	{
 		if (stackA[2] < stackA[3])
 		{
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			rotate_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 		}
 		else
 		{
 			rotate_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			rotate_a(stackA, 1);
 			rotate_a(stackA, 1);
 		}
@@ -164,7 +164,7 @@ void	make_four(int *stackA, int *stackB, int ac)
 		{
 			rotate_a(stackA, 1);
 			rotate_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			rotate_a(stackA, 1);
 		}
 		else
@@ -185,15 +185,15 @@ void	make_four(int *stackA, int *stackB, int ac)
 		if (stackA[2] < stackA[3])
 		{
 			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			rotate_a(stackA, 1);
 			rotate_a(stackA, 1);
 		}
 		else
 		{
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 		}
 	}
 	// 3 2 X X
@@ -202,20 +202,20 @@ void	make_four(int *stackA, int *stackB, int ac)
 		if (stackA[2] < stackA[3])
 		{
 			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			rotate_a(stackA, 1);
 			rotate_a(stackA, 1);
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 		}
 		else
 		{
-			swap_a(stackA, 1);
+			swap_a(stackA, 1);	
 			reverse_a(stackA, 1);
 		}
 	}
 }
 
-void	copy_stack(int *dest, int *src, int ac)
+void	copy_stack(long int *dest, long int *src, int ac)
 {
 	int	i;
 
@@ -227,7 +227,7 @@ void	copy_stack(int *dest, int *src, int ac)
 	}
 }
 
-int *sort_stack(int *s_ghost, t_data *data)
+long int *sort_stack(long int *s_ghost, t_data *data)
 {
 	int i;
 	int j;
@@ -254,13 +254,13 @@ int *sort_stack(int *s_ghost, t_data *data)
 	return (s_ghost);
 }
 
-void	high_five(int *stackA, int *stackB, int ac)
+void	high_five(long int *stackA, long int *stackB, int ac)
 {
 	int i;
 	int count;
 	t_data data;
-	int s_ghost[1000] = {};
-	int s_med[1000] = {};
+	long int s_ghost[1000] = {};
+	long int s_med[1000] = {};
 
 	i = 0;
 	copy_stack(s_ghost, stackA, ac);
@@ -295,13 +295,13 @@ void	high_five(int *stackA, int *stackB, int ac)
 	push_a(stackA, stackB, ac, 1);
 }
 /*
-void	make_all(int *stackA, int *stackB, int ac)
+void	make_all(long int *stackA, long int *stackB, int ac)
 {
 	int i;
 	int z;
-	int s_ghost[1000] = {};
+	long int s_ghost[1000] = {};
 
-		i = 0;
+	i = 0;
 	copy_stack(s_ghost, stackA, ac);
 	sort_stack(s_ghost, ac);
 	while (i < (ac - 1))
@@ -324,16 +324,17 @@ void	make_all(int *stackA, int *stackB, int ac)
 }
 */
 
-int	ra_or_rra(int *stack, int elem, t_data *data)
+int	ra_or_rra(long int *stack, int elem, t_data *data)
 {
 	int	i;
-	int fant[1000] = {};
+	long int fant[1000] = {};
 
 	i = 0;
+	b_pas_zero(fant);
 	copy_stack(fant, stack, data->ac);
 	while (fant[0] != elem)
 	{
-		rotate_a(stack, 0);
+		rotate_a(fant, 0);
 		i++;
 		if (i == ((data->ac - 1) / 2))
 		{
@@ -1059,7 +1060,7 @@ int check_count(long int *stackA, long int *stackB, long int value, t_data *data
 			ca++;
 		while (value > fantA[ca])
 			ca++;
-//		while (value < fantA[ca])       // qu'est ce que ceci change ?
+//		while (value < fantA[ca])       // qu'est ce que ceci change ? 
 //			ca++;
 		if (ca > data->medA)
 			ca = -1;
@@ -1204,7 +1205,7 @@ void	make_all(long int *stackA, long int *stackB, int ac)
 					start = stackA[0];
 					data.count_tmp = count;
 					list[0] = stackA[0];
-
+					
 					v = 1;
 					tmp = stackA[0];
 					j = i + 1;
@@ -1220,7 +1221,7 @@ void	make_all(long int *stackA, long int *stackB, int ac)
 						}
 						j++;
 					}
-				}
+				}	
 				i++;
 			}
 			rotate_a(stackA, 0);

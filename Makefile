@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/09/28 17:10:15 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/12 16:45:10 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT = ./libft/ft_putchar_fd.c \
 
 OBJS = ${SRCS:.c=.o} ${LIBFT:.c=.o}
 
-CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -Wall -Wextra -Werror
 
 all:	${NAME}
 

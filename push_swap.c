@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/19 14:50:05 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/19 16:07:21 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	print_table(long int *stackA, long int *stackB)
 	{
 		if (stackA[i] < 2999999999)
 			diff = 15 - ft_strlen((ft_itoa(stackA[i]))) - 1;
-		else if (stackA[i] == 3000000000)
+		else if (stackA[i] == 3000000000) 
 			diff = 15 - ft_strlen((ft_itoa(stackA[i])));
 		j = diff - 1;
 		printf("||    [%ld]", stackA[i]);
