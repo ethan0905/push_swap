@@ -54,6 +54,7 @@ void	reverse_b(long int *stackB, int print);
 void	reverse_ab(long int *stackA, long int *stackB, int print);
 
 void	b_pas_zero(long int *tab);
+void	find_min_and_max_in_stack(long int *stackA, long int *stackB, t_data *data);
 void	print_table(long int *stackA, long int *stackB);
 int		solve(long int *stackA, long int *stackB, int ac);
 void	initialize(t_data *data, int ac);
