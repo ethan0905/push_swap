@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/19 16:07:21 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/20 13:14:10 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	initialize(t_data *data, int ac)
 	data->rb = 0;
 	data->rrb = 0;
 	data->rra = 0;
+	data->count_ra = 0;
+	data->count_rb = 0;
+	data->count_rra = 0;
+	data->count_rrb = 0;
 }
 
 int	already_sorted(long int *stackA, int size)

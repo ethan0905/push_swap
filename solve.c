@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:48:09 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/19 16:30:50 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/20 13:22:53 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -572,20 +572,101 @@ int check_count(long int *stackA, long int *stackB, long int value, t_data *data
 
 void	push_best_nb(long int *stackA, long int *stackB, t_data *data, int to_push)
 {
-	while (stackB[0] != to_push && data->count_tmp > 1)
+	int tmp_tmp;
+	long int fantA[1000] = {};
+	long int fantB[1000] = {};
+
+	//partie 1:test pour savoir si double RR ou RRR
+	b_pas_zero(fantA);
+	b_pas_zero(fantB);
+
+	copy_stack(fantA, stackA, data->ac);
+	copy_stack(fantB, stackB, data->ac);
+
+	tmp_tmp = data->count_tmp;
+	data->count_ra = 0;
+	data->count_rb = 0;
+	data->count_rra = 0;
+	data->count_rrb = 0;
+	while (fantB[0] != to_push && tmp_tmp > 1)
 	{
 		if (data->rb == 1 && data->rrb == 0)
-			rotate_b(stackB, 1);
+		{
+			rotate_b(fantB, 0);
+			data->count_rb++;
+		}
 		else if (data->rrb == 1 && data->rb == 0)
-			reverse_b(stackB, 1);
-		data->count_tmp--;
+		{
+			reverse_b(fantB, 0);
+			data->count_rrb++;
+		}
+		tmp_tmp--;
 	}
-	while (data->count_tmp > 1)
+	while (tmp_tmp > 1)
 	{
 		if (data->ra == 1 && data->rra == 0)
-			rotate_a(stackA, 1);
+		{
+			rotate_a(fantA, 0);
+			data->count_ra++;
+		}
 		else if (data->ra == 0 && data->rra == 1)
+		{
+			reverse_a(fantA, 0);
+			data->count_rra++;
+		}
+		tmp_tmp--;
+	}
+	push_a(fantA, fantB, data->ac, 0);
+//	printf("===============================\n");
+//	printf("+++++++++++++++++++++++++++++++\n");
+//	printf("count_ra = %d\n", data->count_ra);
+//	printf("count_rb = %d\n", data->count_rb);
+//	printf("count_rra = %d\n", data->count_rra);
+//	printf("count_rrb = %d\n", data->count_rrb);
+	//partie 2: execution
+	while (stackB[0] != to_push && data->count_tmp > 1)
+	{
+		if (data->rb == 1 && data->rrb == 0 && data->count_rb > 0 && data->count_ra == 0)
+			rotate_b(stackB, 1);
+		else if (data->rrb == 1 && data->rb == 0 && data->count_rrb > 0 && data->count_rra == 0)
+			reverse_b(stackB, 1);
+		else if ((data->count_rb > 0 && data->count_ra > 0) || (data->count_rrb > 0 && data->count_rra > 0))
+		{
+			if (data->count_rb > 0 && data->count_ra > 0)
+			{
+				rotate_ab(stackA, stackB, 1);
+				data->count_rb--;
+				data->count_ra--;
+			}
+			else if (data->count_rrb > 0 && data->count_rra > 0)
+			{
+				reverse_ab(stackA, stackB, 1);
+				data->count_rrb--;
+				data->count_rra--;
+			}
+		}
+//		print_table(stackA, stackB);
+		data->count_tmp--;
+	}
+//	printf("count_ra = %d\n", data->count_ra);
+//	printf("count_rb = %d\n", data->count_rb);
+//	printf("count_rra = %d\n", data->count_rra);
+//	printf("count_rrb = %d\n", data->count_rrb);
+//
+//	printf("+++++++++++++++++++++++++++++++\n");
+//	printf("===============================\n");
+	while (data->count_tmp > 1)
+	{
+		if (data->ra == 1 && data->rra == 0 && data->count_ra > 0 && data->count_rb == 0)
+		{
+			rotate_a(stackA, 1);
+			data->count_ra--;
+		}
+		else if (data->ra == 0 && data->rra == 1 && data->count_rra > 0 && data->count_rrb == 0)
+		{
 			reverse_a(stackA, 1);
+			data->count_rra--;
+		}
 		data->count_tmp--;
 	}
 	push_a(stackA, stackB, data->ac, 1);

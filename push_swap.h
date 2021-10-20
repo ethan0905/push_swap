@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/18 16:40:45 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/20 12:42:50 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ typedef struct s_data{
 	int	rb;
 	int	rra;
 	int	rrb;
+	int	count_ra;
+	int	count_rb;
+	int	count_rra;
+	int	count_rrb;
 } t_data;
 
 int	main(int ac, char **av);
