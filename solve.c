@@ -6,214 +6,11 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:48:09 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 13:22:53 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/20 19:26:18 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	make_two(long int *stackA)
-{
-	reverse_a(stackA, 1);
-}
-
-void	make_three(long int *stackA)
-{
-	if (stackA[0] < stackA[1])
-	{
-		if (stackA[0] < stackA[2])
-		{
-			swap_a(stackA, 1);
-			rotate_a(stackA, 1);
-		}
-		else
-			reverse_a(stackA, 1);
-	}
-	else if (stackA[0] > stackA[1])
-	{
-		if (stackA[1] > stackA[2])
-		{
-			swap_a(stackA, 1);
-			reverse_a(stackA, 1);
-		}
-		else if (stackA[0] < stackA[2])
-			swap_a(stackA, 1);
-		else
-			rotate_a(stackA, 1);
-	}
-}
-
-void	make_four(long int *stackA, long int *stackB, int ac)
-{
-	//cas commencant par quatre
-	if (stackA[0] > stackA[1] && stackA[0] > stackA[2] && stackA[0] > stackA[3])
-	{
-		if (stackA[2] > stackA[3] && stackA[1] < stackA[3])
-		{
-			reverse_a(stackA, 1);
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
-			reverse_a(stackA, 1);
-		}
-		else if (stackA[2] > stackA[3] && stackA[1] > stackA[3] && stackA[1] < stackA[2])
-		{
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);
-			rotate_a(stackA, 1);
-		}
-		else if (stackA[1] < stackA[2] && stackA[2] < stackA[3])
-			rotate_a(stackA, 1);
-		else if (stackA[1] > stackA[2] && stackA[1] > stackA[3])
-		{
-			if (stackA[2] < stackA[3])
-			{
-				swap_a(stackA, 1);
-				rotate_a(stackA, 1);
-				rotate_a(stackA, 1);
-			}
-			else
-			{
-				swap_a(stackA, 1);
-				reverse_a(stackA, 1);
-				reverse_a(stackA, 1);
-				swap_a(stackA, 1);
-			}
-		}
-		else if (stackA[2] < stackA[1] && stackA[1] < stackA[3])
-		{
-			rotate_a(stackA, 1);
-			swap_a(stackA, 1);
-		}
-	}
-	//cas commencant par un
-	else if (stackA[0] < stackA[1] && stackA[0] < stackA[2] && stackA[0] < stackA[3])
-	{
-		if (stackA[1] < stackA[3] && stackA[3] < stackA[2])
-		{	
-			reverse_a(stackA, 1);
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);				
-			reverse_a(stackA, 1);
-			reverse_a(stackA, 1);
-		}
-		else if (stackA[1] < stackA[3] && stackA[3] > stackA[2])
-		{
-			rotate_a(stackA, 1);
-			swap_a(stackA, 1);				
-			reverse_a(stackA, 1);
-		}
-		else if (stackA[1] > stackA[3] && stackA[3] < stackA[2] && stackA[1] < stackA[2])
-		{
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);			
-		}
-		else if (stackA[1] > stackA[2] && stackA[1] > stackA[3])
-		{
-			if (stackA[2] < stackA[3])
-			{
-				reverse_a(stackA, 1);
-				swap_a(stackA, 1);	
-				reverse_a(stackA, 1);
-				swap_a(stackA, 1);			
-			}
-			else
-			{
-				push_b(stackA, stackB, ac, 1);
-				swap_a(stackA, 1);	
-				reverse_a(stackA, 1);
-				push_a(stackA, stackB, ac, 1);
-			}
-		}
-	}
-	//cas commencant par deux
-	// 2 1 X X
-	else if (stackA[0] > stackA[1] && stackA[0] < stackA[2] && stackA[0] < stackA[3])
-	{
-		if (stackA[2] < stackA[3])
-			swap_a(stackA, 1);	
-		else
-		{
-			push_b(stackA, stackB, ac, 1);
-			push_b(stackA, stackB, ac, 1);
-			swap_ab(stackA, stackB, 1);	
-			push_a(stackA, stackB, ac, 1);
-			push_a(stackA, stackB, ac, 1);
-		}
-	}
-	// 2 4 X X
-	else if (stackA[0] < stackA[1] && stackA[1] > stackA[2] && stackA[1] > stackA[3] && (stackA[0] < stackA[2] || stackA[0] < stackA[3]))
-	{
-		if (stackA[2] < stackA[3])
-		{
-			swap_a(stackA, 1);	
-			rotate_a(stackA, 1);
-			swap_a(stackA, 1);	
-		}
-		else
-		{
-			rotate_a(stackA, 1);
-			swap_a(stackA, 1);	
-			rotate_a(stackA, 1);
-			rotate_a(stackA, 1);
-		}
-	}
-	// 2 3 X X
-	else if (stackA[0] < stackA[1] && (stackA[1] < stackA[2] || stackA[1] < stackA[3]))
-	{
-		if (stackA[2] < stackA[3])
-		{
-			rotate_a(stackA, 1);
-			rotate_a(stackA, 1);
-			swap_a(stackA, 1);	
-			rotate_a(stackA, 1);
-		}
-		else
-			reverse_a(stackA, 1);
-	}
-	//cas commencant par trois
-	// 3 4 X X
-	else if (stackA[0] < stackA[1] && stackA[0] > stackA[2] && stackA[0] > stackA[3])
-	{
-		rotate_a(stackA, 1);
-		rotate_a(stackA, 1);
-		if (stackA[0] > stackA[1])
-			swap_a(stackA, 1);
-	}
-	// 3 1 X X
-	else if (stackA[0] > stackA[1] && stackA[1] < stackA[2] && stackA[1] < stackA[3])
-	{
-		if (stackA[2] < stackA[3])
-		{
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);	
-			rotate_a(stackA, 1);
-			rotate_a(stackA, 1);
-		}
-		else
-		{
-			swap_a(stackA, 1);	
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);	
-		}
-	}
-	// 3 2 X X
-	else if (stackA[0] > stackA[1] && (stackA[1] < stackA[2] || stackA[1] < stackA[3]))
-	{
-		if (stackA[2] < stackA[3])
-		{
-			reverse_a(stackA, 1);
-			swap_a(stackA, 1);	
-			rotate_a(stackA, 1);
-			rotate_a(stackA, 1);
-			swap_a(stackA, 1);	
-		}
-		else
-		{
-			swap_a(stackA, 1);	
-			reverse_a(stackA, 1);
-		}
-	}
-}
 
 void	copy_stack(long int *dest, long int *src, int ac)
 {
@@ -227,7 +24,7 @@ void	copy_stack(long int *dest, long int *src, int ac)
 	}
 }
 
-long int *sort_stack(long int *s_ghost, t_data *data)
+long int *sort_stack(long int *fant, t_data *data)
 {
 	int i;
 	int j;
@@ -239,92 +36,25 @@ long int *sort_stack(long int *s_ghost, t_data *data)
 		j = i + 1;
 		while (j < (data->ac - 1))
 		{
-			if (s_ghost[j] < s_ghost[i])
+			if (fant[j] < fant[i])
 			{
-				tmp = s_ghost[j];
-				s_ghost[j] = s_ghost[i];
-				s_ghost[i] = tmp;
+				tmp = fant[j];
+				fant[j] = fant[i];
+				fant[i] = tmp;
 			}
 			j++;
 		}
 		i++;
 	}
-	data->min = s_ghost[0];
-	data->max = s_ghost[data->ac - 2];
-	return (s_ghost);
+	data->min = fant[0];
+	data->max = fant[data->ac - 2];
+	return (fant);
 }
-
-void	high_five(long int *stackA, long int *stackB, int ac)
-{
-	int i;
-	int count;
-	t_data data;
-	long int s_med[1000] = {};
-
-	i = 0;
-	count = 0;
-	b_pas_zero(s_med);
-	copy_stack(s_med, stackA, ac);
-
-	find_min_and_max_in_stack(stackA, stackB, &data);
-	//regarder si RA ou RRA
-	while (i < (ac - 1) && (s_med[0] != data.min_du_stack))
-	{
-		rotate_a(s_med, 0);
-		count++;
-		i++;
-	}
-	if (count > ((ac - 1) /2))
-		count = -1;
-	i = 0;
-	while (i < (ac - 1) && (stackA[0] != data.min_du_stack))
-	{
-		if (count > 0)
-			rotate_a(stackA, 1);
-		else if (count < 0)
-			reverse_a(stackA, 1);
-		i++;
-	}
-	push_b(stackA, stackB, ac, 1);
-	if (!(stackA[0] < stackA[1] && stackA[1] < stackA[2] && stackA[2] < stackA[3]))
-		make_four(stackA, stackB, ac);
-	push_a(stackA, stackB, ac, 1);
-}
-
-/* // algo de tri utilisant un stack fantome trie
-void	make_all(long int *stackA, long int *stackB, int ac)
-{
-	int i;
-	int z;
-	long int s_ghost[1000] = {};
-
-	i = 0;
-	copy_stack(s_ghost, stackA, ac);
-	sort_stack(s_ghost, ac);
-	while (i < (ac - 1))
-	{
-		push_b(stackA, stackB, ac, 1);
-		i++;
-	}
-	z = ac - 2;
-	while (z > 0)
-	{
-		if (stackB[0] != 0)
-		{
-			while (stackB[0] != s_ghost[z])
-				rotate_b(stackB, 1);
-			push_a(stackA, stackB, ac, 1);
-		}
-		z--;
-	}
-	push_a(stackA, stackB, ac, 1);
-}
-*/
 
 int	ra_or_rra(long int *stack, int elem, t_data *data)
 {
 	int	i;
-	long int fant[1000] = {};
+	long int fant[502];
 
 	i = 0;
 	b_pas_zero(fant);
@@ -346,37 +76,37 @@ int	ra_or_rra(long int *stack, int elem, t_data *data)
 	return (0);
 }
 
-void	push_b_only_bads(long int *stackA, long int *stackB, long int *list, t_data *data)
+void	push_b_only_bads(long int *stack_a, long int *stack_b, long int *list, t_data *data)
 {
 	int j;
 
 	j = 0;
-	if (ra_or_rra(stackA, list[0], data) == 1)
+	if (ra_or_rra(stack_a, list[0], data) == 1)
 	{
-		while (stackA[0] != list[0])
-			rotate_a(stackA, 1);
+		while (stack_a[0] != list[0])
+			rotate_a(stack_a, 1);
 	}
-	else if (ra_or_rra(stackA, list[0], data) == 2)
+	else if (ra_or_rra(stack_a, list[0], data) == 2)
 	{
-		while (stackA[0] != list[0])
-			reverse_a(stackA, 1);
+		while (stack_a[0] != list[0])
+			reverse_a(stack_a, 1);
 	}
 	while (j < data->count_tmp)
 	{
-		while (stackA[0] != list[j])
+		while (stack_a[0] != list[j])
 		{
-			push_b(stackA, stackB, data->ac, 1);
+			push_b(stack_a, stack_b, data->ac, 1);
 			data->remain_b++;
 		}
-		if (stackA[0] == list[j])
+		if (stack_a[0] == list[j])
 		{
-			rotate_a(stackA, 1);
+			rotate_a(stack_a, 1);
 			j++;
 		}
 	}
 	while (j + data->remain_b < (data->ac - 1))
 	{
-		push_b(stackA, stackB, data->ac, 1);
+		push_b(stack_a, stack_b, data->ac, 1);
 		data->remain_b++;
 	}
 }
@@ -409,7 +139,7 @@ int	max_is_in(long int *stack, int max)
 	return (0);
 }
 
-void	find_min_and_max_in_stack(long int *stackA, long int *stackB, t_data *data)
+void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *data)
 {
 	int i;
 	long int tmp;
@@ -417,54 +147,54 @@ void	find_min_and_max_in_stack(long int *stackA, long int *stackB, t_data *data)
 	i = 0;
 	tmp = 3000000000;
 	//find min
-	while (stackA[i] != 3000000000)
+	while (stack_a[i] != 3000000000)
 	{
-		if (stackA[i] < tmp)
-			tmp = stackA[i];
+		if (stack_a[i] < tmp)
+			tmp = stack_a[i];
 		i++;
 	}
 	data->min_du_stack = tmp;
 	//find max
 	i = 0;
 	tmp = -3000000000;
-	while (stackA[i] != 3000000000)
+	while (stack_a[i] != 3000000000)
 	{
-		if (stackA[i] > tmp)
-			tmp = stackA[i];
+		if (stack_a[i] > tmp)
+			tmp = stack_a[i];
 		i++;
 	}
 	data->max_du_stack = tmp;
 }
 
-int check_count(long int *stackA, long int *stackB, long int value, t_data *data)
+int check_count(long int *stack_a, long int *stack_b, long int value, t_data *data)
 {
 	int ca, cb;
 	int i;
 	int remain_a;
-	long int fantA[1000] = {};
-	long int fantB[1000] = {};
+	long int fant_a[502];
+	long int fant_b[502];
 
-	b_pas_zero(fantA);
-	copy_stack(fantA, stackA, data->ac);
-	b_pas_zero(fantB);
-	copy_stack(fantB, stackB, data->ac);
+	b_pas_zero(fant_a);
+	copy_stack(fant_a, stack_a, data->ac);
+	b_pas_zero(fant_b);
+	copy_stack(fant_b, stack_b, data->ac);
 
-	//part 1 : recuperer ma median ainsi que la taille de mon stackA
+	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
 	remain_a = data->ac-1-data->remain_b;
-	data->medA = remain_a/2;
-	data->medB = data->remain_b/2;
+	data->med_a = remain_a/2;
+	data->med_b = data->remain_b/2;
 
 	//part 2 : trouver mon min et max de A actuel
-	find_min_and_max_in_stack(fantA, fantB, data);
+	find_min_and_max_in_stack(fant_a, fant_b, data);
 
 	//part 3 : compter
 	cb = 0;
-	while (fantB[cb] != value)
+	while (fant_b[cb] != value)
 	{
 		cb++;
 		data->rb_tmp = 1;
 		data->rrb_tmp = 0;
-		if (cb > data->medB)
+		if (cb > data->med_b)
 		{
 			data->rb_tmp = 0;
 			data->rrb_tmp = 1;
@@ -475,27 +205,27 @@ int check_count(long int *stackA, long int *stackB, long int value, t_data *data
 	if (cb < 0)
 	{
 		cb = 0;
-		while (fantB[data->remain_b - 1 - cb] != value)
+		while (fant_b[data->remain_b - 1 - cb] != value)
 			cb++;
 		cb++;
 	}
 
-	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stackB[0]
+	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
 	ca = 0;
 	if (value < data->min_du_stack)
 	{
 		data->ra_tmp = 1;
 		data->rra_tmp = 0;
-		while (fantA[ca] != data->min_du_stack)
+		while (fant_a[ca] != data->min_du_stack)
 			ca++;
-		if (ca > data->medA)
+		if (ca > data->med_a)
 			ca = -1;
 		if (ca < 0)
 		{
 			ca = 0;
 			data->ra_tmp = 0;
 			data->rra_tmp = 1;
-			while (fantA[remain_a-1-ca] != data->max_du_stack)
+			while (fant_a[remain_a-1-ca] != data->max_du_stack)
 				ca++;
 		}
 	}
@@ -503,101 +233,101 @@ int check_count(long int *stackA, long int *stackB, long int value, t_data *data
 	{
 		data->ra_tmp = 1;
 		data->rra_tmp = 0;
-		while (fantA[ca] != data->min_du_stack)
+		while (fant_a[ca] != data->min_du_stack)
 			ca++;
-		if (ca > data->medA)
+		if (ca > data->med_a)
 			ca = -1;
 		if (ca < 0)
 		{
 			ca = 0;
 			data->ra_tmp = 0;
 			data->rra_tmp = 1;
-			while (fantA[remain_a - 1 - ca] != data->min_du_stack)
+			while (fant_a[remain_a - 1 - ca] != data->min_du_stack)
 				ca++;
 			ca++;
 		}
 	}
-	else if (value > fantA[ca])
+	else if (value > fant_a[ca])
 	{
 
 		if (value < data->max_du_stack)
 		{
 			data->ra_tmp = 1;
 			data->rra_tmp = 0;
-			while (value > fantA[ca])
+			while (value > fant_a[ca])
 				ca++;
-			if (ca > data->medA)
+			if (ca > data->med_a)
 				ca = -1;
 			if (ca < 0)
 			{
 				ca = 0;
 				data->ra_tmp = 0;
 				data->rra_tmp = 1;
-				if (value > fantA[remain_a - 1 - ca])
+				if (value > fant_a[remain_a - 1 - ca])
 				{
-					while (value > fantA[remain_a - 1 - ca])
+					while (value > fant_a[remain_a - 1 - ca])
 						ca++;
-					while (value < fantA[remain_a - 1 - ca])
+					while (value < fant_a[remain_a - 1 - ca])
 						ca++;
 				}
 				else
 				{
-					while (value < fantA[remain_a - 1 - ca])
+					while (value < fant_a[remain_a - 1 - ca])
 						ca++;
 				}
 			}
 		}
 	}
-	else if (value < fantA[ca])
+	else if (value < fant_a[ca])
 	{
 		data->ra_tmp = 1;
 		data->rra_tmp = 0;
-		while (value < fantA[ca])
+		while (value < fant_a[ca])
 			ca++;
-		while (value > fantA[ca])
+		while (value > fant_a[ca])
 			ca++;
-		if (ca > data->medA)
+		if (ca > data->med_a)
 			ca = -1;
 		if (ca < 0)
 		{
 			ca = 0;
 			data->ra_tmp = 0;
 			data->rra_tmp = 1;
-			while (value < fantA[remain_a - 1 - ca])
+			while (value < fant_a[remain_a - 1 - ca])
 				ca++;
 		}
 	}
 	return (ca+cb+1);
 }
 
-void	push_best_nb(long int *stackA, long int *stackB, t_data *data, int to_push)
+void	push_best_nb(long int *stack_a, long int *stack_b, t_data *data, int to_push)
 {
 	int tmp_tmp;
-	long int fantA[1000] = {};
-	long int fantB[1000] = {};
+	long int fant_a[502];
+	long int fant_b[502];
 
 	//partie 1:test pour savoir si double RR ou RRR
-	b_pas_zero(fantA);
-	b_pas_zero(fantB);
+	b_pas_zero(fant_a);
+	b_pas_zero(fant_b);
 
-	copy_stack(fantA, stackA, data->ac);
-	copy_stack(fantB, stackB, data->ac);
+	copy_stack(fant_a, stack_a, data->ac);
+	copy_stack(fant_b, stack_b, data->ac);
 
 	tmp_tmp = data->count_tmp;
 	data->count_ra = 0;
 	data->count_rb = 0;
 	data->count_rra = 0;
 	data->count_rrb = 0;
-	while (fantB[0] != to_push && tmp_tmp > 1)
+	while (fant_b[0] != to_push && tmp_tmp > 1)
 	{
 		if (data->rb == 1 && data->rrb == 0)
 		{
-			rotate_b(fantB, 0);
+			rotate_b(fant_b, 0);
 			data->count_rb++;
 		}
 		else if (data->rrb == 1 && data->rb == 0)
 		{
-			reverse_b(fantB, 0);
+			reverse_b(fant_b, 0);
 			data->count_rrb++;
 		}
 		tmp_tmp--;
@@ -606,17 +336,17 @@ void	push_best_nb(long int *stackA, long int *stackB, t_data *data, int to_push)
 	{
 		if (data->ra == 1 && data->rra == 0)
 		{
-			rotate_a(fantA, 0);
+			rotate_a(fant_a, 0);
 			data->count_ra++;
 		}
 		else if (data->ra == 0 && data->rra == 1)
 		{
-			reverse_a(fantA, 0);
+			reverse_a(fant_a, 0);
 			data->count_rra++;
 		}
 		tmp_tmp--;
 	}
-	push_a(fantA, fantB, data->ac, 0);
+	push_a(fant_a, fant_b, data->ac, 0);
 //	printf("===============================\n");
 //	printf("+++++++++++++++++++++++++++++++\n");
 //	printf("count_ra = %d\n", data->count_ra);
@@ -624,28 +354,28 @@ void	push_best_nb(long int *stackA, long int *stackB, t_data *data, int to_push)
 //	printf("count_rra = %d\n", data->count_rra);
 //	printf("count_rrb = %d\n", data->count_rrb);
 	//partie 2: execution
-	while (stackB[0] != to_push && data->count_tmp > 1)
+	while (stack_b[0] != to_push && data->count_tmp > 1)
 	{
 		if (data->rb == 1 && data->rrb == 0 && data->count_rb > 0 && data->count_ra == 0)
-			rotate_b(stackB, 1);
+			rotate_b(stack_b, 1);
 		else if (data->rrb == 1 && data->rb == 0 && data->count_rrb > 0 && data->count_rra == 0)
-			reverse_b(stackB, 1);
+			reverse_b(stack_b, 1);
 		else if ((data->count_rb > 0 && data->count_ra > 0) || (data->count_rrb > 0 && data->count_rra > 0))
 		{
 			if (data->count_rb > 0 && data->count_ra > 0)
 			{
-				rotate_ab(stackA, stackB, 1);
+				rotate_ab(stack_a, stack_b, 1);
 				data->count_rb--;
 				data->count_ra--;
 			}
 			else if (data->count_rrb > 0 && data->count_rra > 0)
 			{
-				reverse_ab(stackA, stackB, 1);
+				reverse_ab(stack_a, stack_b, 1);
 				data->count_rrb--;
 				data->count_rra--;
 			}
 		}
-//		print_table(stackA, stackB);
+//		print_table(stack_a, stack_b);
 		data->count_tmp--;
 	}
 //	printf("count_ra = %d\n", data->count_ra);
@@ -659,20 +389,20 @@ void	push_best_nb(long int *stackA, long int *stackB, t_data *data, int to_push)
 	{
 		if (data->ra == 1 && data->rra == 0 && data->count_ra > 0 && data->count_rb == 0)
 		{
-			rotate_a(stackA, 1);
+			rotate_a(stack_a, 1);
 			data->count_ra--;
 		}
 		else if (data->ra == 0 && data->rra == 1 && data->count_rra > 0 && data->count_rrb == 0)
 		{
-			reverse_a(stackA, 1);
+			reverse_a(stack_a, 1);
 			data->count_rra--;
 		}
 		data->count_tmp--;
 	}
-	push_a(stackA, stackB, data->ac, 1);
+	push_a(stack_a, stack_b, data->ac, 1);
 }
 
-void	insert_sort(long int *stackA, long int *stackB, t_data *data)
+void	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
 {
 	int i;
 	int to_push;
@@ -687,7 +417,7 @@ void	insert_sort(long int *stackA, long int *stackB, t_data *data)
 		to_push = 0;
 		while (i < data->remain_b)
 		{
-			data->count_tmp = check_count(stackA, stackB, stackB[i], data);
+			data->count_tmp = check_count(stack_a, stack_b, stack_b[i], data);
 			if (data->count_tmp < tmp)
 			{
 				data->ra = data->ra_tmp;
@@ -695,24 +425,24 @@ void	insert_sort(long int *stackA, long int *stackB, t_data *data)
 				data->rra = data->rra_tmp;
 				data->rrb = data->rrb_tmp;
 				tmp = data->count_tmp;
-				to_push = stackB[i]; // avant : tmp = stackB[0], une erreur a 35 000 operations
+				to_push = stack_b[i]; // avant : tmp = stack_b[0], une erreur a 35 000 operations
 			}
 			i++;
 		}
 		data->count_tmp = tmp;
-		push_best_nb(stackA, stackB, data, to_push);
+		push_best_nb(stack_a, stack_b, data, to_push);
 		data->remain_b--;
 	}
-	while (stackA[0] != data->min)
+	while (stack_a[0] != data->min)
 	{
-		if (ra_or_rra(stackA, data->min, data) == 1)
-			rotate_a(stackA, 1);
-		else if (ra_or_rra(stackA, data->min, data) == 2)
-			reverse_a(stackA, 1);
+		if (ra_or_rra(stack_a, data->min, data) == 1)
+			rotate_a(stack_a, 1);
+		else if (ra_or_rra(stack_a, data->min, data) == 2)
+			reverse_a(stack_a, 1);
 	}
 }
 
-void	make_all(long int *stackA, long int *stackB, int ac)
+void	make_all(long int *stack_a, long int *stack_b, int ac)
 {
 	int x;
 	int v;
@@ -722,54 +452,54 @@ void	make_all(long int *stackA, long int *stackB, int ac)
 	int tmp;
 	int count;
 	int start;
-	long int list[1000] = {};
-	long int s_ghost[1000] = {};
+	long int list[502];
+	long int fant[502];
 	int count_tmp;
 
 	x = 0;
 	initialize(&data, ac);
 	b_pas_zero(list);
-	b_pas_zero(s_ghost);
-	copy_stack(s_ghost, stackA, ac);
-	sort_stack(s_ghost, &data);
+	b_pas_zero(fant);
+	copy_stack(fant, stack_a, ac);
+	sort_stack(fant, &data);
 	count_tmp = 0;
 	while (x < ((data.ac) - 1))
 	{
-		if (stackA[x])
+		if (stack_a[x])
 		{
 			i = 0;
 			while (i < ((data.ac) - 1))
 			{
 				count = 1;
 				j = i + 1;
-				tmp = stackA[0];
+				tmp = stack_a[0];
 				while (j < ((data.ac) - 1))
 				{
-					while (tmp < stackA[j + 1] && stackA[j + 1] < stackA[j])
+					while (tmp < stack_a[j + 1] && stack_a[j + 1] < stack_a[j])
 						j++;
-					if (tmp < stackA[j])
+					if (tmp < stack_a[j])
 					{
-						tmp = stackA[j];
+						tmp = stack_a[j];
 						count++;
 					}
 					j++;
 				}
 				if (data.count_tmp < count)
 				{
-					start = stackA[0];
+					start = stack_a[0];
 					data.count_tmp = count;
-					list[0] = stackA[0];
+					list[0] = stack_a[0];
 					
 					v = 1;
-					tmp = stackA[0];
+					tmp = stack_a[0];
 					j = i + 1;
 					while (j < ((data.ac) - 1))
 					{
-						while (tmp < stackA[j + 1] && stackA[j + 1] < stackA[j])
+						while (tmp < stack_a[j + 1] && stack_a[j + 1] < stack_a[j])
 							j++;
-						if (tmp < stackA[j])
+						if (tmp < stack_a[j])
 						{
-							tmp = stackA[j];
+							tmp = stack_a[j];
 							list[v] = tmp;
 							v++;
 						}
@@ -778,30 +508,30 @@ void	make_all(long int *stackA, long int *stackB, int ac)
 				}	
 				i++;
 			}
-			rotate_a(stackA, 0);
+			rotate_a(stack_a, 0);
 			x++;
 		}
 		else
 		{
-			rotate_a(stackA, 0);
+			rotate_a(stack_a, 0);
 			x++;
 		}
 	}
-	push_b_only_bads(stackA, stackB, list, &data);
-	insert_sort(stackA, stackB, &data);
+	push_b_only_bads(stack_a, stack_b, list, &data);
+	insert_sort(stack_a, stack_b, &data);
 }
 
-int 	solve(long int *stackA, long int *stackB, int ac)
+int 	solve(long int *stack_a, long int *stack_b, int ac)
 {
 	if ((ac - 1) == 2)
-		make_two(stackA);
+		make_two(stack_a);
 	if ((ac - 1) == 3)
-		make_three(stackA);
+		make_three(stack_a);
 	if ((ac - 1) == 4)
-		make_four(stackA, stackB, ac);
+		make_four(stack_a, stack_b, ac);
 	if ((ac - 1) == 5)
-		high_five(stackA, stackB, ac);
+		high_five(stack_a, stack_b, ac);
 	if ((ac - 1) >= 6)
-		make_all(stackA, stackB, ac);
+		make_all(stack_a, stack_b, ac);
 	return (1);
 }
