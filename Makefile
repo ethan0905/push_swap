@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/20 19:20:54 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/20 19:40:35 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ NAME = push_swap
 
 SRCS = push_swap.c \
 	   solve.c \
-	   ./srcs/swap.c \
-	   ./srcs/push.c \
-	   ./srcs/rotate.c \
-	   ./srcs/reverse.c \
+	   ./operations/swap.c \
+	   ./operations/push.c \
+	   ./operations/rotate.c \
+	   ./operations/reverse.c \
 	   ./sequences/sequences_of_moves_1.c \
 	   ./sequences/sequences_of_moves_2.c \
 	   ./sequences/sequences_of_moves_3.c \

@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:48:09 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 19:26:18 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/20 20:32:00 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,11 @@ int	max_is_in(long int *stack, int max)
 
 void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *data)
 {
-	int i;
-	long int tmp;
+	int			i;
+	long int	tmp;
 
 	i = 0;
 	tmp = 3000000000;
-	//find min
 	while (stack_a[i] != 3000000000)
 	{
 		if (stack_a[i] < tmp)
@@ -154,7 +153,6 @@ void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *dat
 		i++;
 	}
 	data->min_du_stack = tmp;
-	//find max
 	i = 0;
 	tmp = -3000000000;
 	while (stack_a[i] != 3000000000)
@@ -166,28 +164,10 @@ void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *dat
 	data->max_du_stack = tmp;
 }
 
-int check_count(long int *stack_a, long int *stack_b, long int value, t_data *data)
+int	get_cb(long int *fant_b, t_data *data, int value)
 {
-	int ca, cb;
-	int i;
-	int remain_a;
-	long int fant_a[502];
-	long int fant_b[502];
+	int cb;
 
-	b_pas_zero(fant_a);
-	copy_stack(fant_a, stack_a, data->ac);
-	b_pas_zero(fant_b);
-	copy_stack(fant_b, stack_b, data->ac);
-
-	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
-	remain_a = data->ac-1-data->remain_b;
-	data->med_a = remain_a/2;
-	data->med_b = data->remain_b/2;
-
-	//part 2 : trouver mon min et max de A actuel
-	find_min_and_max_in_stack(fant_a, fant_b, data);
-
-	//part 3 : compter
 	cb = 0;
 	while (fant_b[cb] != value)
 	{
@@ -209,11 +189,88 @@ int check_count(long int *stack_a, long int *stack_b, long int value, t_data *da
 			cb++;
 		cb++;
 	}
+	return (cb);
+}
 
-	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
+int under_min_of_stack(long int *fant_a, t_data *data, int ca, int remain_a)
+{
+	data->ra_tmp = 1;
+	data->rra_tmp = 0;
+	while (fant_a[ca] != data->min_du_stack)
+		ca++;
+	if (ca > data->med_a)
+		ca = -1;
+	if (ca < 0)
+	{
+		ca = 0;
+		data->ra_tmp = 0;
+		data->rra_tmp = 1;
+		while (fant_a[remain_a-1-ca] != data->max_du_stack)
+			ca++;
+	}
+	return (ca);
+}
+
+int superior_to_max_of_stack(long int *fant_a, t_data *data, int ca, int remain_a)
+{
+	data->ra_tmp = 1;
+	data->rra_tmp = 0;
+	while (fant_a[ca] != data->min_du_stack)
+		ca++;
+	if (ca > data->med_a)
+		ca = -1;
+	if (ca < 0)
+	{
+		ca = 0;
+		data->ra_tmp = 0;
+		data->rra_tmp = 1;
+		while (fant_a[remain_a - 1 - ca] != data->min_du_stack)
+			ca++;
+		ca++;
+	}
+	return (ca);
+}
+
+int under_max_of_stack(long int *fant_a, t_data *data, int value, int remain_a)
+{
+	int ca;
+
+	ca = 0;
+	data->ra_tmp = 1;
+	data->rra_tmp = 0;
+	while (value > fant_a[ca])
+		ca++;
+	if (ca > data->med_a)
+		ca = -1;
+	if (ca < 0)
+	{
+		ca = 0;
+		data->ra_tmp = 0;
+		data->rra_tmp = 1;
+		if (value > fant_a[remain_a - 1 - ca])
+		{
+			while (value > fant_a[remain_a - 1 - ca])
+				ca++;
+			while (value < fant_a[remain_a - 1 - ca])
+				ca++;
+		}
+		else
+		{
+			while (value < fant_a[remain_a - 1 - ca])
+				ca++;
+		}
+	}
+	return (ca);
+}
+
+int	get_ca(long int *fant_a, t_data *data, int value, int remain_a)
+{
+	int ca;
+
 	ca = 0;
 	if (value < data->min_du_stack)
 	{
+//		under_min_of_stack(fant_a, data, ca, remain_a);
 		data->ra_tmp = 1;
 		data->rra_tmp = 0;
 		while (fant_a[ca] != data->min_du_stack)
@@ -231,6 +288,7 @@ int check_count(long int *stack_a, long int *stack_b, long int value, t_data *da
 	}
 	else if (value > data->max_du_stack)
 	{
+//		superior_to_max_of_stack(fant_a, data, ca, remain_a);
 		data->ra_tmp = 1;
 		data->rra_tmp = 0;
 		while (fant_a[ca] != data->min_du_stack)
@@ -249,9 +307,9 @@ int check_count(long int *stack_a, long int *stack_b, long int value, t_data *da
 	}
 	else if (value > fant_a[ca])
 	{
-
 		if (value < data->max_du_stack)
 		{
+//			under_max_of_stack(fant_a, data, value, remain_a);
 			data->ra_tmp = 1;
 			data->rra_tmp = 0;
 			while (value > fant_a[ca])
@@ -297,6 +355,32 @@ int check_count(long int *stack_a, long int *stack_b, long int value, t_data *da
 				ca++;
 		}
 	}
+	return (ca);
+}
+
+int check_count(long int *stack_a, long int *stack_b, long int value, t_data *data)
+{
+	int			ca;
+	int			cb;
+	int			i;
+	int			remain_a;
+	long int	fant_a[502];
+	long int	fant_b[502];
+
+	b_pas_zero(fant_a);
+	copy_stack(fant_a, stack_a, data->ac);
+	b_pas_zero(fant_b);
+	copy_stack(fant_b, stack_b, data->ac);
+	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
+	remain_a = data->ac-1-data->remain_b;
+	data->med_a = remain_a/2;
+	data->med_b = data->remain_b/2;
+	//part 2 : trouver mon min et max de A actuel
+	find_min_and_max_in_stack(fant_a, fant_b, data);
+	//part 3 : compter
+	cb = get_cb(fant_b, data, value);
+	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
+	ca = get_ca(fant_a, data, value, remain_a);
 	return (ca+cb+1);
 }
 
@@ -309,7 +393,6 @@ void	push_best_nb(long int *stack_a, long int *stack_b, t_data *data, int to_pus
 	//partie 1:test pour savoir si double RR ou RRR
 	b_pas_zero(fant_a);
 	b_pas_zero(fant_b);
-
 	copy_stack(fant_a, stack_a, data->ac);
 	copy_stack(fant_b, stack_b, data->ac);
 
@@ -347,12 +430,6 @@ void	push_best_nb(long int *stack_a, long int *stack_b, t_data *data, int to_pus
 		tmp_tmp--;
 	}
 	push_a(fant_a, fant_b, data->ac, 0);
-//	printf("===============================\n");
-//	printf("+++++++++++++++++++++++++++++++\n");
-//	printf("count_ra = %d\n", data->count_ra);
-//	printf("count_rb = %d\n", data->count_rb);
-//	printf("count_rra = %d\n", data->count_rra);
-//	printf("count_rrb = %d\n", data->count_rrb);
 	//partie 2: execution
 	while (stack_b[0] != to_push && data->count_tmp > 1)
 	{
@@ -375,16 +452,8 @@ void	push_best_nb(long int *stack_a, long int *stack_b, t_data *data, int to_pus
 				data->count_rra--;
 			}
 		}
-//		print_table(stack_a, stack_b);
 		data->count_tmp--;
 	}
-//	printf("count_ra = %d\n", data->count_ra);
-//	printf("count_rb = %d\n", data->count_rb);
-//	printf("count_rra = %d\n", data->count_rra);
-//	printf("count_rrb = %d\n", data->count_rrb);
-//
-//	printf("+++++++++++++++++++++++++++++++\n");
-//	printf("===============================\n");
 	while (data->count_tmp > 1)
 	{
 		if (data->ra == 1 && data->rra == 0 && data->count_ra > 0 && data->count_rb == 0)
