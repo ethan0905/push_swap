@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 18:58:00 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 11:03:37 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	initialize(t_data *data, int ac)
 	data->ac = ac;
 	data->count_tmp = 0;
 	data->remain_b = 0;
+	data->tmp = 0;
+	data->tmp_tmp = 0;
 	data->min = 0;
 	data->med_a = 0;
 	data->med_b = 0;
@@ -37,7 +39,14 @@ void	initialize(t_data *data, int ac)
 	data->count_rrb = 0;
 }
 
-/*
+void	initialize_s2(t_iter *iter)
+{
+	iter->i = 0;
+	iter->j = 0;
+	iter->x = 0;
+	iter->v = 0;
+}
+
 void	print_table(long int *stack_a, long int *stack_b)
 {
 	int	i;
@@ -69,7 +78,7 @@ void	print_table(long int *stack_a, long int *stack_b)
 	}
 	printf("===========================================\n");
 	printf(" 		STACK A               STACK B\n");
-}*/
+}
 
 void	b_pas_zero(long int *tab)
 {
@@ -105,5 +114,6 @@ int	main(int ac, char **av)
 	else if (ac == 1 || ac == 2 || already_sorted(stack_a, (ac - 1)) == -1)
 		return (-1);
 	solve(stack_a, stack_b, ac);
+//	print_table(stack_a, stack_b);
 	return (0);
 }

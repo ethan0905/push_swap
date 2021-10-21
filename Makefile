@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/20 19:40:35 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/21 12:15:09 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,10 @@ SRCS = push_swap.c \
 	   ./solve/make_3.c \
 	   ./solve/make_4.c \
 	   ./solve/make_5.c \
+	   ./solve/make_all/push_best_nb.c \
+	   ./solve/make_all/initialize_count_for_rr_rrr.c \
+	   ./solve/make_all/check_count.c \
+	   ./solve/make_all/get_ca.c \
 	   ./check_and_error/check_and_error.c
 
 LIBFT = ./libft/ft_putchar_fd.c \

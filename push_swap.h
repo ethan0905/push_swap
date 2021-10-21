@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 19:34:59 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 12:14:19 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_data{
 	int	ac;
 	int	count_tmp;
 	int	remain_b;
+	int tmp;
+	int tmp_tmp;
 	int	min;
 	int	med_a;
 	int	med_b;
@@ -42,6 +44,13 @@ typedef struct s_data{
 	int	count_rra;
 	int	count_rrb;
 }	t_data;
+
+typedef struct s_iterator{
+	int i;
+	int j;
+	int x;
+	int v;
+}	t_iter;
 
 //OPERATIONS
 void	swap_a(long int *stack_a, int print);
@@ -101,9 +110,8 @@ int		already_sorted(long int *stack_a, int size);
 //INITIALISATION
 int		main(int ac, char **av);
 void	initialize(t_data *data, int ac);
+void	initialize_s2(t_iter *iter);
 void	b_pas_zero(long int *tab);
-void	find_min_and_max_in_stack(long int *stack_a,
-			long int *stack_b, t_data *data);
 
 //AFFICHAGE
 void	print_table(long int *stack_a, long int *stack_b);
@@ -118,6 +126,22 @@ void	make_four(long int *stack_a, long int *stack_b, int ac);
 void	high_five(long int *stack_a, long int *stack_b, int ac);
 int		rotate_ou_reverse(long int *stack_a, int count_tmp, int i);
 void	solve_my_five(long int *stack_a, long int *stack_b, t_data *data, int ac);
+
+int check_count(long int *stack_a, long int *stack_b, long int value, t_data *data);
+void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *data);
+int	get_ca(long int *fant_a, t_data *data, int value, int remain_a);
+int	get_cb(long int *fant_b, t_data *data, int value);
+int under_min_of_stack(long int *fant_a, t_data *data, int ca, int remain_a);
+int superior_to_max_of_stack(long int *fant_a, t_data *data, int ca, int remain_a);
+int under_max_of_stack(long int *fant_a, t_data *data, int value, int remain_a);
+int under_top_of_stack(long int *fant_a, t_data *data, int value, int remain_a);
+
+void	push_best_nb(long int *stack_a, long int *stack_b, t_data *data, int to_push);
+int	initialize_count_for_rr_rrr(t_data *data);
+long int	*rfa_or_rrfa(long int *fant_a, t_data *data);
+long int	*rfb_or_rrfb(long int *fant_b, t_data *data);
+void exec_moves_b(long int *stack_a, long int *stack_b, t_data *data);
+void exec_moves_a(long int *stack_a, t_data *data);
 
 void	copy_stack(long int *dest, long int *src, int ac);
 long int *sort_stack(long int *fant, t_data *data);
