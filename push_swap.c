@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 16:39:35 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 17:27:04 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	initialize_s2(t_iter *iter)
 	iter->x = 0;
 	iter->v = 0;
 	iter->count = 0;
+}
+
+void	initialize_s3(t_need_space *need_space)
+{
+	need_space->ca = 0;
+	need_space->cb = 0;
 }
 
 void	print_table(long int *stack_a, long int *stack_b)

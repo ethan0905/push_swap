@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 19:15:25 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 19:16:23 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 17:06:28 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,26 @@ int	rotate_ou_reverse(long int *stack_a, int count_tmp, int i)
 	return (i);
 }
 
-void	solve_my_five(long int *stack_a, long int *stack_b, t_data *data, int ac)
+void	solve_my_five(long int *stack_a,
+		long int *stack_b, t_data *data, int ac)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < (ac - 1) && (stack_a[0] != data->min_du_stack))
 		rotate_ou_reverse(stack_a, data->count_tmp, i);
 	push_b(stack_a, stack_b, ac, 1);
-	if (!(stack_a[0] < stack_a[1] && stack_a[1] < stack_a[2] && stack_a[2] < stack_a[3]))
+	if (!(stack_a[0] < stack_a[1] && stack_a[1] < stack_a[2]
+			&& stack_a[2] < stack_a[3]))
 		make_four(stack_a, stack_b, ac);
 	push_a(stack_a, stack_b, ac, 1);
-
 }
 
 void	high_five(long int *stack_a, long int *stack_b, int ac)
 {
-	int i;
-	t_data data;
-	long int s_med[502];
+	int			i;
+	t_data		data;
+	long int	s_med[502];
 
 	i = 0;
 	initialize(&data, ac);
@@ -53,7 +54,7 @@ void	high_five(long int *stack_a, long int *stack_b, int ac)
 		data.count_tmp++;
 		i++;
 	}
-	if (data.count_tmp > ((ac - 1) /2))
+	if (data.count_tmp > ((ac - 1) / 2))
 		data.count_tmp = -1;
 	solve_my_five(stack_a, stack_b, &data, ac);
 }

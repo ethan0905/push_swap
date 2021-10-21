@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:26:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 16:47:12 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 17:08:10 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	case_4xxx(long int *stack_a)
 {
 	if (stack_a[2] > stack_a[3] && stack_a[1] < stack_a[3])
 		rra_rra_sa_rra(stack_a);
-	else if (stack_a[2] > stack_a[3] && stack_a[1] > stack_a[3] && stack_a[1] < stack_a[2])
+	else if (stack_a[2] > stack_a[3] && stack_a[1] > stack_a[3]
+		&& stack_a[1] < stack_a[2])
 		rra_sa_ra(stack_a);
 	else if (stack_a[1] < stack_a[2] && stack_a[2] < stack_a[3])
 		rotate_a(stack_a, 1);

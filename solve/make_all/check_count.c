@@ -6,13 +6,14 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 12:09:39 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 17:27:28 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *data)
+void	find_min_and_max_in_stack(long int *stack_a,
+		long int *stack_b, t_data *data)
 {
 	int			i;
 	long int	tmp;
@@ -39,7 +40,7 @@ void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *dat
 
 int	get_cb(long int *fant_b, t_data *data, int value)
 {
-	int cb;
+	int	cb;
 
 	cb = 0;
 	while (fant_b[cb] != value)
@@ -67,7 +68,7 @@ int	get_cb(long int *fant_b, t_data *data, int value)
 
 int	get_ca(long int *fant_a, t_data *data, int value, int remain_a)
 {
-	int ca;
+	int	ca;
 
 	ca = 0;
 	if (value < data->min_du_stack)
@@ -92,28 +93,28 @@ int	get_ca(long int *fant_a, t_data *data, int value, int remain_a)
 	return (ca);
 }
 
-int check_count(long int *stack_a, long int *stack_b, long int value, t_data *data)
+int	check_count(long int *stack_a, long int *stack_b,
+		long int value, t_data *data)
 {
-	int			ca;
-	int			cb;
-	int			i;
-	int			remain_a;
-	long int	fant_a[502];
-	long int	fant_b[502];
+	int				remain_a;
+	long int		fant_a[502];
+	long int		fant_b[502];
+	t_need_space	need_space;
 
 	b_pas_zero(fant_a);
 	copy_stack(fant_a, stack_a, data->ac);
 	b_pas_zero(fant_b);
 	copy_stack(fant_b, stack_b, data->ac);
+	initialize_s3(&need_space);
 	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
-	remain_a = data->ac-1-data->remain_b;
-	data->med_a = remain_a/2;
-	data->med_b = data->remain_b/2;
+	remain_a = data->ac - 1 - data->remain_b;
+	data->med_a = remain_a / 2;
+	data->med_b = data->remain_b / 2;
 	//part 2 : trouver mon min et max de A actuel
 	find_min_and_max_in_stack(fant_a, fant_b, data);
 	//part 3 : compter
-	cb = get_cb(fant_b, data, value);
+	need_space.cb = get_cb(fant_b, data, value);
 	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
-	ca = get_ca(fant_a, data, value, remain_a);
-	return (ca+cb+1);
+	need_space.ca = get_ca(fant_a, data, value, remain_a);
+	return (need_space.ca + need_space.cb + 1);
 }
