@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 16:04:11 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:39:35 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,5 @@ int	main(int ac, char **av)
 	else if (ac == 1 || ac == 2 || already_sorted(stack_a, (ac - 1)) == -1)
 		return (-1);
 	solve(stack_a, stack_b, ac);
-//	print_table(stack_a, stack_b);
 	return (0);
 }

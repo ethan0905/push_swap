@@ -6,11 +6,11 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:00:46 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 16:03:56 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:44:29 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 void	push_b(long int *stack_a, long int *stack_b, int ac, int print)
 {

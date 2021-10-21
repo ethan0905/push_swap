@@ -6,11 +6,11 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:02:31 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 16:04:04 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:45:01 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 void	swap_a(long int *stack_a, int print)
 {

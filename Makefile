@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/21 16:27:01 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/21 16:44:07 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,18 @@ NAME = push_swap
 
 SRCS = push_swap.c \
 	   solve.c \
-	   ./operations/swap.c \
-	   ./operations/push.c \
-	   ./operations/rotate.c \
-	   ./operations/reverse.c \
-	   ./sequences/sequences_of_moves_1.c \
-	   ./sequences/sequences_of_moves_2.c \
-	   ./sequences/sequences_of_moves_3.c \
-	   ./sequences/sequences_of_moves_4.c \
-	   ./cases/case_1xxx.c \
-	   ./cases/case_2xxx.c \
-	   ./cases/case_3xxx.c \
-	   ./cases/case_4xxx.c \
+	   ./solve/operations/swap.c \
+	   ./solve/operations/push.c \
+	   ./solve/operations/rotate.c \
+	   ./solve/operations/reverse.c \
+	   ./solve/sequences/sequences_of_moves_1.c \
+	   ./solve/sequences/sequences_of_moves_2.c \
+	   ./solve/sequences/sequences_of_moves_3.c \
+	   ./solve/sequences/sequences_of_moves_4.c \
+	   ./solve/sequences/cases/case_1xxx.c \
+	   ./solve/sequences/cases/case_2xxx.c \
+	   ./solve/sequences/cases/case_3xxx.c \
+	   ./solve/sequences/cases/case_4xxx.c \
 	   ./solve/make_2.c \
 	   ./solve/make_3.c \
 	   ./solve/make_4.c \
@@ -39,7 +39,7 @@ SRCS = push_swap.c \
 	   ./solve/make_all/get_ca.c \
 	   ./solve/make_all/insert_sort.c \
 	   ./solve/make_all/ra_or_rra.c \
-	   ./check_and_error/check_and_error.c
+	   ./solve/check_and_error/check_and_error.c
 
 LIBFT = ./libft/ft_putchar_fd.c \
 		./libft/ft_atoi.c \

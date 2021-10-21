@@ -6,11 +6,11 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:47:12 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 16:47:43 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:46:23 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 void	pb_pb_sab_pa_pa(long int *stack_a, long int *stack_b, int ac)
 {

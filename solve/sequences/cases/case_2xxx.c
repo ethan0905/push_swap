@@ -6,11 +6,11 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 17:23:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/20 17:30:27 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:46:55 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../../push_swap.h"
 
 void	case_21xx(long int *stack_a, long int *stack_b, int ac)
 {
