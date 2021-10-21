@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/21 12:40:19 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/21 16:27:01 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ SRCS = push_swap.c \
 	   ./solve/make_3.c \
 	   ./solve/make_4.c \
 	   ./solve/make_5.c \
+	   ./solve/utils.c \
+	   ./solve/make_all/make_all.c \
+	   ./solve/make_all/push_b_only_bads.c \
 	   ./solve/make_all/push_best_nb.c \
 	   ./solve/make_all/initialize_count_for_rr_rrr.c \
 	   ./solve/make_all/check_count.c \

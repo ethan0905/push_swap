@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 11:03:37 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:04:11 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	initialize_s2(t_iter *iter)
 	iter->j = 0;
 	iter->x = 0;
 	iter->v = 0;
+	iter->count = 0;
 }
 
 void	print_table(long int *stack_a, long int *stack_b)

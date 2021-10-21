@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 12:40:40 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 16:26:35 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_iterator{
 	int j;
 	int x;
 	int v;
+	int count;
 }	t_iter;
 
 //OPERATIONS
@@ -118,6 +119,8 @@ void	print_table(long int *stack_a, long int *stack_b);
 
 //RESOLUTION
 int		solve(long int *stack_a, long int *stack_b, int ac);
+void	copy_stack(long int *dest, long int *src, int ac);
+long int *sort_stack(long int *fant, t_data *data);
 
 void	make_two(long int *stack_a);
 void	make_three(long int *stack_a);
@@ -126,6 +129,15 @@ void	make_four(long int *stack_a, long int *stack_b, int ac);
 void	high_five(long int *stack_a, long int *stack_b, int ac);
 int		rotate_ou_reverse(long int *stack_a, int count_tmp, int i);
 void	solve_my_five(long int *stack_a, long int *stack_b, t_data *data, int ac);
+
+void	make_all(long int *stack_a, long int *stack_b, int ac);
+void	search_already_sorted_list(long int *stack_a, long int *list, t_data *data, t_iter *iter);
+void	count_actual_list_size(long int *stack_a, t_data *data, t_iter *iter);
+void	save_actual_longest_list(long int *stack_a, long int *list, t_data *data, t_iter *iter);
+
+void	push_b_only_bads(long int *stack_a, long int *stack_b, long int *list, t_data *data);
+void	ra_or_rra_until_elem_from_list(long int *stack_a, int nb_list, t_data *data);
+void	complete_pushing_all_bads_to_b(long int *stack_a, long int *stack_b, t_data *data, int j);
 
 int check_count(long int *stack_a, long int *stack_b, long int value, t_data *data);
 void	find_min_and_max_in_stack(long int *stack_a, long int *stack_b, t_data *data);
@@ -149,8 +161,5 @@ void exec_moves_b(long int *stack_a, long int *stack_b, t_data *data);
 void exec_moves_a(long int *stack_a, t_data *data);
 
 int	ra_or_rra(long int *stack, int elem, t_data *data);
-
-void	copy_stack(long int *dest, long int *src, int ac);
-long int *sort_stack(long int *fant, t_data *data);
 
 #endif
