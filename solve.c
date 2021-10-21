@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 08:48:09 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 12:23:44 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 12:40:50 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ long int *sort_stack(long int *fant, t_data *data)
 	data->max = fant[data->ac - 2];
 	return (fant);
 }
-
-int	ra_or_rra(long int *stack, int elem, t_data *data)
+/*
+im int	ra_or_rra(long int *stack, int elem, t_data *data)
 {
 	int	i;
 	long int fant[502];
@@ -74,7 +74,7 @@ int	ra_or_rra(long int *stack, int elem, t_data *data)
 	if (i >= 0)
 		return (1);
 	return (0);
-}
+}*/
 
 void	push_b_only_bads(long int *stack_a, long int *stack_b, long int *list, t_data *data)
 {
@@ -138,7 +138,7 @@ int	max_is_in(long int *stack, int max)
 	}
 	return (0);
 }
-
+/*
 int	save_best_value_and_count(long int *stack_b, t_data *data, int to_push, int i)
 {
 	data->ra = data->ra_tmp;
@@ -185,7 +185,7 @@ void	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
 		data->remain_b--;
 	}
 	reorder_the_stack(stack_a, data);
-}
+}*/
 
 void	make_all(long int *stack_a, long int *stack_b, int ac)
 {

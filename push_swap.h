@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 12:14:19 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/21 12:40:40 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,19 @@ int superior_to_max_of_stack(long int *fant_a, t_data *data, int ca, int remain_
 int under_max_of_stack(long int *fant_a, t_data *data, int value, int remain_a);
 int under_top_of_stack(long int *fant_a, t_data *data, int value, int remain_a);
 
+void	insert_sort(long int *stack_a, long int *stack_b, t_data *data);
+int	ra_or_rra(long int *stack, int elem, t_data *data);
+int	save_best_value_and_count(long int *stack_b, t_data *data, int to_push, int i);
+void	reorder_the_stack(long int *stack_a, t_data *data);
+
 void	push_best_nb(long int *stack_a, long int *stack_b, t_data *data, int to_push);
 int	initialize_count_for_rr_rrr(t_data *data);
 long int	*rfa_or_rrfa(long int *fant_a, t_data *data);
 long int	*rfb_or_rrfb(long int *fant_b, t_data *data);
 void exec_moves_b(long int *stack_a, long int *stack_b, t_data *data);
 void exec_moves_a(long int *stack_a, t_data *data);
+
+int	ra_or_rra(long int *stack, int elem, t_data *data);
 
 void	copy_stack(long int *dest, long int *src, int ac);
 long int *sort_stack(long int *fant, t_data *data);
