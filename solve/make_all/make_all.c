@@ -74,8 +74,8 @@ void	make_all(long int *stack_a, long int *stack_b, int ac)
 
 	initialize(&data, ac);
 	initialize_s2(&iter);
-	b_pas_zero(list);
-	b_pas_zero(fant);
+	b_pas_zero(list, ac);
+	b_pas_zero(fant, ac);
 	copy_stack(fant, stack_a, ac);
 	sort_stack(fant, &data);
 	while (iter.x < ((data.ac) - 1))

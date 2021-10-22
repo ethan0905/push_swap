@@ -101,9 +101,9 @@ int	check_count(long int *stack_a, long int *stack_b,
 	long int		fant_b[502];
 	t_need_space	need_space;
 
-	b_pas_zero(fant_a);
+	b_pas_zero(fant_a, data->ac);
 	copy_stack(fant_a, stack_a, data->ac);
-	b_pas_zero(fant_b);
+	b_pas_zero(fant_b, data->ac);
 	copy_stack(fant_b, stack_b, data->ac);
 	initialize_s3(&need_space);
 	//part 1 : recuperer ma median ainsi que la taille de mon stack_a

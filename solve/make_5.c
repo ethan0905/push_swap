@@ -41,11 +41,12 @@ void	high_five(long int *stack_a, long int *stack_b, int ac)
 {
 	int			i;
 	t_data		data;
-	long int	s_med[502];
+	long int	*s_med;
 
 	i = 0;
 	initialize(&data, ac);
-	b_pas_zero(s_med);
+	s_med = malloc_init(s_med, ac);
+	b_pas_zero(s_med, ac);
 	copy_stack(s_med, stack_a, ac);
 	find_min_and_max_in_stack(stack_a, stack_b, &data);
 	while (i < (ac - 1) && (s_med[0] != data.min_du_stack))
@@ -57,4 +58,5 @@ void	high_five(long int *stack_a, long int *stack_b, int ac)
 	if (data.count_tmp > ((ac - 1) / 2))
 		data.count_tmp = -1;
 	solve_my_five(stack_a, stack_b, &data, ac);
+	free(s_med);
 }

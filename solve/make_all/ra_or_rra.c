@@ -18,7 +18,7 @@ int	ra_or_rra(long int *stack, int elem, t_data *data)
 	long int	fant[502];
 
 	i = 0;
-	b_pas_zero(fant);
+	b_pas_zero(fant, data->ac);
 	copy_stack(fant, stack, data->ac);
 	while (fant[0] != elem)
 	{

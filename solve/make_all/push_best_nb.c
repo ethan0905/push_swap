@@ -95,8 +95,8 @@ void	push_best_nb(long int *stack_a, long int *stack_b,
 	long int	fant_b[502];
 
 	//partie 1:test pour savoir si double RR ou RRR
-	b_pas_zero(fant_a);
-	b_pas_zero(fant_b);
+	b_pas_zero(fant_a, data->ac);
+	b_pas_zero(fant_b, data->ac);
 	copy_stack(fant_a, stack_a, data->ac);
 	copy_stack(fant_b, stack_b, data->ac);
 	data->tmp_tmp = initialize_count_for_rr_rrr(data);

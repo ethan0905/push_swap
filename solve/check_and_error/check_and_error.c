@@ -12,9 +12,12 @@
 
 #include "../../push_swap.h"
 
-int	ft_error(void)
+int	ft_error(long int *stack_a, long int *stack_b, int print)
 {
-	ft_putstr_fd("Error\n", 2);
+	if (print > 0)
+		ft_putstr_fd("Error\n", 2);
+	free(stack_a);
+	free(stack_b);
 	return (-1);
 }
 

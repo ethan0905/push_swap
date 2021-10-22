@@ -12,6 +12,11 @@
 
 #include "./push_swap.h"
 
+void	f(void)
+{
+	system("leaks push_swap");
+}
+
 void	initialize(t_data *data, int ac)
 {
 	data->ac = ac;
@@ -87,39 +92,65 @@ void	print_table(long int *stack_a, long int *stack_b)
 	printf(" 		STACK A               STACK B\n");
 }
 
-void	b_pas_zero(long int *tab)
+void	b_pas_zero(long int *tab, int ac)
 {
 	int	i;
 
 	i = 0;
-	while (i < 502)
+	while (i < ac + 1)
 	{
 		tab[i] = 3000000000;
 		i++;
 	}
 }
 
+long int *malloc_init(long int *tab, int ac)
+{
+	tab = (long int *)malloc(sizeof(long int) * (ac + 1));
+	if (!tab)
+		return (NULL);
+	return (tab);
+}
+
 int	main(int ac, char **av)
 {
 	int			i;
-	long int	stack_a[502];
-	long int	stack_b[502];
+	long int	*stack_a;
+	long int	*stack_b;
 
 	i = 0;
-	b_pas_zero(stack_a);
-	b_pas_zero(stack_b);
+	stack_a = malloc_init(stack_a, ac);
+	stack_b = malloc_init(stack_b, ac);
+	b_pas_zero(stack_a, ac);
+	b_pas_zero(stack_b, ac);
 	while (i < ac - 1)
 	{
 		if (ft_atoi(av[i + 1]) || ft_atoi(av[i + 1]) == 0)
+		{
 			stack_a[i] = ft_atoi(av[i + 1]);
+		}
 		else
-			ft_error();
+		{
+			ft_error(stack_a, stack_b, 1);
+			printf("ok");
+			return (-1);
+		}
+		stack_a[i] = ft_atoi(av[i + 1]);
 		i++;
 	}
 	if (check_tab(stack_a, (ac - 1)) == -1)
-		ft_error();
-	else if (ac == 1 || ac == 2 || already_sorted(stack_a, (ac - 1)) == -1)
+	{
+		ft_error(stack_a, stack_b, 1);
 		return (-1);
+	}
+	else if (ac == 1 || ac == 2 || already_sorted(stack_a, (ac - 1)) == -1)
+	{
+		ft_error(stack_a, stack_b, 0);
+		return (-1);
+	}
 	solve(stack_a, stack_b, ac);
+	free(stack_a);
+	free(stack_b);
+//	atexit(f);
 	return (0);
 }

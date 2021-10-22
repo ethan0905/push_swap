@@ -109,7 +109,7 @@ void	case_34xx(long int *stack_a);
 void	case_4xxx(long int *stack_a);
 
 //CHECK DES ERREURS
-int		ft_error(void);
+int		ft_error(long int *stack_a, long int *stack_b, int print);
 int		check_tab(long int *stack_a, int size);
 int		already_sorted(long int *stack_a, int size);
 
@@ -118,7 +118,8 @@ int		main(int ac, char **av);
 void	initialize(t_data *data, int ac);
 void	initialize_s2(t_iter *iter);
 void	initialize_s3(t_need_space *need_space);
-void	b_pas_zero(long int *tab);
+void	b_pas_zero(long int *tab, int ac);
+long int	*malloc_init(long int *tab, int ac);
 
 //AFFICHAGE
 void	print_table(long int *stack_a, long int *stack_b);
