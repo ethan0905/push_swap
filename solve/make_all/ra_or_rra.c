@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:38:33 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 15:23:55 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/22 08:34:40 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ra_or_rra(long int *stack, int elem, t_data *data)
 {
-	int	i;
-	long int fant[502];
+	int			i;
+	long int	fant[502];
 
 	i = 0;
 	b_pas_zero(fant);

@@ -6,13 +6,14 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:44:20 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 15:45:04 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/22 08:29:59 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	ra_or_rra_until_elem_from_list(long int *stack_a, int nb_list, t_data *data)
+void	ra_or_rra_until_elem_from_list(long int *stack_a,
+		int nb_list, t_data *data)
 {
 	if (ra_or_rra(stack_a, nb_list, data) == 1)
 	{
@@ -26,7 +27,8 @@ void	ra_or_rra_until_elem_from_list(long int *stack_a, int nb_list, t_data *data
 	}
 }
 
-void	complete_pushing_all_bads_to_b(long int *stack_a, long int *stack_b, t_data *data, int j)
+void	complete_pushing_all_bads_to_b(long int *stack_a,
+		long int *stack_b, t_data *data, int j)
 {
 	while (j + data->remain_b < (data->ac - 1))
 	{
@@ -34,9 +36,11 @@ void	complete_pushing_all_bads_to_b(long int *stack_a, long int *stack_b, t_data
 		data->remain_b++;
 	}
 }
-void	push_b_only_bads(long int *stack_a, long int *stack_b, long int *list, t_data *data)
+
+void	push_b_only_bads(long int *stack_a, long int *stack_b,
+		long int *list, t_data *data)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	ra_or_rra_until_elem_from_list(stack_a, list[0], data);

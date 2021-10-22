@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:24:36 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 15:25:10 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/22 08:44:21 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	copy_stack(long int *dest, long int *src, int ac)
 	}
 }
 
-long int *sort_stack(long int *fant, t_data *data)
+long int	*sort_stack(long int *fant, t_data *data)
 {
-	int i;
-	int j;
-	int tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
 	i = 0;
 	while (i < (data->ac - 1))

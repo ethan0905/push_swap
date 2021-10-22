@@ -6,13 +6,14 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:34:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 15:22:45 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/22 08:41:21 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-int	save_best_value_and_count(long int *stack_b, t_data *data, int to_push, int i)
+int	save_best_value_and_count(long int *stack_b, t_data *data,
+		int to_push, int i)
 {
 	data->ra = data->ra_tmp;
 	data->rb = data->rb_tmp;
@@ -36,9 +37,9 @@ void	reorder_the_stack(long int *stack_a, t_data *data)
 
 void	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
 {
-	int i;
-	int to_push;
-	int count;
+	int	i;
+	int	to_push;
+	int	count;
 
 	data->count_tmp = 0;
 	while (data->remain_b > 0)
