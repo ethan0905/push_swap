@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 17:27:28 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/24 12:48:33 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ int	check_count(long int *stack_a, long int *stack_b,
 		long int value, t_data *data)
 {
 	int				remain_a;
-	long int		fant_a[502];
-	long int		fant_b[502];
+	long int		fant_a[503];
+	long int		fant_b[503];
 	t_need_space	need_space;
 
 	b_pas_zero(fant_a, data->ac);

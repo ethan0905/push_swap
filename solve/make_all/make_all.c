@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:24:51 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/22 08:38:30 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/24 13:55:24 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,19 @@ void	make_all(long int *stack_a, long int *stack_b, int ac)
 	b_pas_zero(fant, ac);
 	copy_stack(fant, stack_a, ac);
 	sort_stack(fant, &data);
-	while (iter.x < ((data.ac) - 1))
+	while (iter.x < (data.ac - 1))
 	{
-		iter.i = 0;
-		while (iter.i < ((data.ac) - 1))
+		if (iter.x == 0)
+			push_b(stack_a, stack_b, ac, 1);
+		else if (stack_a[0] < fant[(ac - 1) / 2])
 		{
-			search_already_sorted_list(stack_a, list, &data, &iter);
+			push_b(stack_a, stack_b, ac, 1);
+			rotate_b(stack_b, 1);
 		}
-		rotate_a(stack_a, 0);
+		else if (stack_a[0] >= fant[(ac - 1) / 2])
+			push_b(stack_a, stack_b, ac, 1);
 		iter.x++;
 	}
-	push_b_only_bads(stack_a, stack_b, list, &data);
+	data.remain_b = ac - 1;
 	insert_sort(stack_a, stack_b, &data);
 }
