@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 19:15:25 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 10:54:48 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 16:52:45 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	solve_my_five(long int *stack_a,
 	push_a(stack_a, stack_b, ac, 1);
 }
 
-void	high_five(long int *stack_a, long int *stack_b, int ac)
+int	high_five(long int *stack_a, long int *stack_b, int ac)
 {
 	int			i;
 	t_data		data;
@@ -46,6 +46,8 @@ void	high_five(long int *stack_a, long int *stack_b, int ac)
 	i = 0;
 	initialize(&data, ac);
 	s_med = malloc_init(s_med, ac);
+	if (!s_med)
+		return (-1);
 	b_pas_zero(s_med, ac);
 	copy_stack(s_med, stack_a, ac);
 	find_min_and_max_in_stack(stack_a, stack_b, &data);
@@ -59,4 +61,5 @@ void	high_five(long int *stack_a, long int *stack_b, int ac)
 		data.count_tmp = -1;
 	solve_my_five(stack_a, stack_b, &data, ac);
 	free(s_med);
+	return (0);
 }

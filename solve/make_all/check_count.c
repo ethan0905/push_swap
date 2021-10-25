@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 11:51:36 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:07:37 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,15 @@ int	check_count(long int *stack_a, long int *stack_b,
 	long int		*fant_b;
 	t_need_space	need_space;
 
-//	fant_a = (long int *)malloc(sizeof(long int) * (data->ac + 10));
 	fant_a = malloc_init (fant_a, data->ac);
+	if (!fant_a)
+		return (-1);
 	fant_b = malloc_init (fant_b, data->ac);
+	if (!fant_b)
+	{
+		free(fant_a);
+		return (-1);
+	}
 	b_pas_zero(fant_a, data->ac);
 	copy_stack(fant_a, stack_a, data->ac);
 	b_pas_zero(fant_b, data->ac);

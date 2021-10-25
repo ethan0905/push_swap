@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 12:36:41 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:48:55 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ void	initialize_s3(t_need_space *need_space)
 	need_space->cb = 0;
 }
 
+void	initialize_s1_s2(t_data *data, t_iter *iter, int ac)
+{
+	initialize(data, ac);
+	initialize_s2(iter);
+}
+
 void	print_table(long int *stack_a, long int *stack_b)
 {
 	int	i;
@@ -92,26 +98,6 @@ void	print_table(long int *stack_a, long int *stack_b)
 	printf(" 		STACK A               STACK B\n");
 }
 
-void	b_pas_zero(long int *tab, int ac)
-{
-	int	i;
-
-	i = 0;
-	while (i < ac)
-	{
-		tab[i] = 3000000000;
-		i++;
-	}
-}
-
-long int *malloc_init(long int *tab, int ac)
-{
-	tab = (long int *)malloc(sizeof(long int) * (ac));
-	if (!tab)
-		return (NULL);
-	return (tab);
-}
-
 int	main(int ac, char **av)
 {
 	int			i;
@@ -120,7 +106,14 @@ int	main(int ac, char **av)
 
 	i = 0;
 	stack_a = malloc_init(stack_a, ac);
+	if (!stack_a)
+		return (-1);
 	stack_b = malloc_init(stack_b, ac);
+	if (!stack_b)
+	{
+		free(stack_a);
+		return (-1);
+	}
 	b_pas_zero(stack_a, ac);
 	b_pas_zero(stack_b, ac);
 	while (i < ac - 1)

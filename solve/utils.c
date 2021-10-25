@@ -6,11 +6,31 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:24:36 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/22 08:44:21 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:17:59 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+long int *malloc_init(long int *tab, int ac)
+{
+	tab = (long int *)malloc(sizeof(long int) * (ac));
+	if (!tab)
+		return (NULL);
+	return (tab);
+}
+
+void	b_pas_zero(long int *tab, int ac)
+{
+	int	i;
+
+	i = 0;
+	while (i < ac)
+	{
+		tab[i] = 3000000000;
+		i++;
+	}
+}
 
 void	copy_stack(long int *dest, long int *src, int ac)
 {
@@ -48,5 +68,12 @@ long int	*sort_stack(long int *fant, t_data *data)
 	}
 	data->min = fant[0];
 	data->max = fant[data->ac - 2];
+	return (fant);
+}
+
+long int *copy_and_sort(long int *fant, long int *stack, t_data *data, int ac)
+{
+	copy_stack(fant, stack, ac);
+	sort_stack(fant, data);
 	return (fant);
 }

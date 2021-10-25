@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:34:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/24 12:48:01 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 16:49:30 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	reorder_the_stack(long int *stack_a, t_data *data)
 	}
 }
 
-void	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
+int	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
 {
 	int	i;
 	int	to_push;
@@ -50,13 +50,17 @@ void	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
 		while (i < data->remain_b)
 		{
 			data->count_tmp = check_count(stack_a, stack_b, stack_b[i], data);
+			if (data->count_tmp < 0)
+				return (-1);
 			if (data->count_tmp < data->tmp)
 				to_push = save_best_value_and_count(stack_b, data, to_push, i);
 			i++;
 		}
 		data->count_tmp = data->tmp;
-		push_best_nb(stack_a, stack_b, data, to_push);
+		if(push_best_nb(stack_a, stack_b, data, to_push) < 0)
+			return (-1);
 		data->remain_b--;
 	}
 	reorder_the_stack(stack_a, data);
+	return (1);
 }

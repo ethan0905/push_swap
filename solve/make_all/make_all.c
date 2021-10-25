@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:24:51 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 12:52:32 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:50:35 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,39 +65,37 @@ void	search_already_sorted_list(long int *stack_a, long int *list,
 	iter->i++;
 }
 
-void	make_all(long int *stack_a, long int *stack_b, int ac)
+void	do_insert_sort(long int *stack_a, long int *stack_b,
+		t_data *data, int ac)
+{
+	data->remain_b = ac - 3;
+	make_two(stack_a);
+	insert_sort(stack_a, stack_b, data);
+}
+
+int	make_all(long int *stack_a, long int *stack_b, int ac)
 {
 	t_data		data;
 	t_iter		iter;
-	long int	*list;
 	long int	*fant;
 
-	list = malloc_init(list, ac);
 	fant = malloc_init(fant, ac);
-	initialize(&data, ac);
-	initialize_s2(&iter);
-	b_pas_zero(list, ac);
+	if (!fant)
+		return (-1);
+	initialize_s1_s2(&data, &iter, ac);
 	b_pas_zero(fant, ac);
-	copy_stack(fant, stack_a, ac);
-	sort_stack(fant, &data);
+	copy_and_sort(fant, stack_a, &data, ac);
 	while (iter.x < (data.ac - 3))
 	{
 		if (iter.x == 0)
 			push_b(stack_a, stack_b, ac, 1);
 		else if (stack_a[0] < fant[(ac - 1) / 2])
-		{
-			push_b(stack_a, stack_b, ac, 1);
-			rotate_b(stack_b, 1);
-		}
+			pb_rb(stack_a, stack_b, ac);
 		else if (stack_a[0] >= fant[(ac - 1) / 2])
 			push_b(stack_a, stack_b, ac, 1);
 		iter.x++;
 	}
-	data.remain_b = ac - 3;
-	make_two(stack_a);
-//	print_table(stack_a, stack_b);
-	insert_sort(stack_a, stack_b, &data);
-//	print_table(stack_a, stack_b);
-	free(list);
+	do_insert_sort(stack_a, stack_b, &data, ac);
 	free(fant);
+	return (1);
 }

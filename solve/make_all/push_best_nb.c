@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:03:13 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 11:24:54 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:07:46 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ long int	*rfa_or_rrfa(long int *fant_a, t_data *data)
 	return (fant_a);
 }
 
-void	push_best_nb(long int *stack_a, long int *stack_b,
+int	push_best_nb(long int *stack_a, long int *stack_b,
 		t_data *data, int to_push)
 {
 	long int	*fant_a;
@@ -96,7 +96,14 @@ void	push_best_nb(long int *stack_a, long int *stack_b,
 
 	//partie 1:test pour savoir si double RR ou RRR
 	fant_a = malloc_init(fant_a, data->ac);
-	fant_b = malloc_init(fant_a, data->ac);
+	fant_b = malloc_init(fant_b, data->ac);
+	if (fant_a && !fant_b)
+	{
+		free(fant_a);
+		return (-1);
+	}
+	else if (!fant_a)
+		return (-1);
 	b_pas_zero(fant_a, data->ac);
 	b_pas_zero(fant_b, data->ac);
 	copy_stack(fant_a, stack_a, data->ac);
@@ -115,4 +122,5 @@ void	push_best_nb(long int *stack_a, long int *stack_b,
 	push_a(stack_a, stack_b, data->ac, 1);
 	free(fant_a);
 	free(fant_b);
+	return (1);
 }
