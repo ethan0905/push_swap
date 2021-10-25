@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:24:51 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/24 13:55:24 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 11:29:02 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ void	make_all(long int *stack_a, long int *stack_b, int ac)
 {
 	t_data		data;
 	t_iter		iter;
-	long int	list[502];
-	long int	fant[502];
+	long int	*list;
+	long int	*fant;
 
+	list = malloc_init(list, ac);
+	fant = malloc_init(fant, ac);
 	initialize(&data, ac);
 	initialize_s2(&iter);
 	b_pas_zero(list, ac);
@@ -93,4 +95,6 @@ void	make_all(long int *stack_a, long int *stack_b, int ac)
 	}
 	data.remain_b = ac - 1;
 	insert_sort(stack_a, stack_b, &data);
+	free(list);
+	free(fant);
 }

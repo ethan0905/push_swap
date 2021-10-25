@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/22 08:25:59 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 12:12:21 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	b_pas_zero(long int *tab, int ac)
 	int	i;
 
 	i = 0;
-	while (i < ac + 1)
+	while (i < ac)
 	{
 		tab[i] = 3000000000;
 		i++;
@@ -106,7 +106,7 @@ void	b_pas_zero(long int *tab, int ac)
 
 long int *malloc_init(long int *tab, int ac)
 {
-	tab = (long int *)malloc(sizeof(long int) * (ac + 1));
+	tab = (long int *)malloc(sizeof(long int) * (ac));
 	if (!tab)
 		return (NULL);
 	return (tab);
@@ -132,7 +132,6 @@ int	main(int ac, char **av)
 		else
 		{
 			ft_error(stack_a, stack_b, 1);
-			printf("ok");
 			return (-1);
 		}
 		stack_a[i] = ft_atoi(av[i + 1]);

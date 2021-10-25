@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/24 12:48:33 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 11:51:36 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,13 @@ int	check_count(long int *stack_a, long int *stack_b,
 		long int value, t_data *data)
 {
 	int				remain_a;
-	long int		fant_a[503];
-	long int		fant_b[503];
+	long int		*fant_a;
+	long int		*fant_b;
 	t_need_space	need_space;
 
+//	fant_a = (long int *)malloc(sizeof(long int) * (data->ac + 10));
+	fant_a = malloc_init (fant_a, data->ac);
+	fant_b = malloc_init (fant_b, data->ac);
 	b_pas_zero(fant_a, data->ac);
 	copy_stack(fant_a, stack_a, data->ac);
 	b_pas_zero(fant_b, data->ac);
@@ -116,5 +119,7 @@ int	check_count(long int *stack_a, long int *stack_b,
 	need_space.cb = get_cb(fant_b, data, value);
 	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
 	need_space.ca = get_ca(fant_a, data, value, remain_a);
+	free(fant_a);
+	free(fant_b);
 	return (need_space.ca + need_space.cb + 1);
 }

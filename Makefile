@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/21 16:44:07 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/25 10:54:14 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ OBJS = ${SRCS:.c=.o} ${LIBFT:.c=.o}
 #CFLAGS = -Wall -Wextra -Werror
 
 all:	${NAME}
+	rm -f ${OBJS}
 
 .c.o:
 	gcc ${CFLAGS} -c $< -o ${<:.c=.o}

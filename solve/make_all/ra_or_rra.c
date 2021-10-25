@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:38:33 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/22 08:34:40 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 11:23:16 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 int	ra_or_rra(long int *stack, int elem, t_data *data)
 {
 	int			i;
-	long int	fant[502];
+	long int	*fant;
 
 	i = 0;
+	fant = malloc_init(fant, data->ac);
 	b_pas_zero(fant, data->ac);
 	copy_stack(fant, stack, data->ac);
 	while (fant[0] != elem)
@@ -30,6 +31,7 @@ int	ra_or_rra(long int *stack, int elem, t_data *data)
 			break ;
 		}
 	}
+	free(fant);
 	if (i == -1)
 		return (2);
 	if (i >= 0)
