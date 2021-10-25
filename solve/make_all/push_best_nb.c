@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:03:13 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 17:07:46 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 18:19:35 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,24 @@ long int	*rfa_or_rrfa(long int *fant_a, t_data *data)
 	return (fant_a);
 }
 
+void	check_moves(long int *fant_a, long int *fant_b, t_data *data, int to_push)
+{
+	while (fant_b[0] != to_push && data->tmp_tmp > 1)
+		fant_b[0] = *rfb_or_rrfb(fant_b, data);
+	while (data->tmp_tmp > 1)
+		fant_a[0] = *rfa_or_rrfa(fant_a, data);
+	push_a(fant_a, fant_b, data->ac, 0);
+}
+
+void	exec_moves(long int *stack_a, long int *stack_b, t_data *data, int to_push)
+{
+	while (stack_b[0] != to_push && data->count_tmp > 1)
+		exec_moves_b(stack_a, stack_b, data);
+	while (data->count_tmp > 1)
+		exec_moves_a(stack_a, data);
+	push_a(stack_a, stack_b, data->ac, 1);
+}
+
 int	push_best_nb(long int *stack_a, long int *stack_b,
 		t_data *data, int to_push)
 {
@@ -96,31 +114,22 @@ int	push_best_nb(long int *stack_a, long int *stack_b,
 
 	//partie 1:test pour savoir si double RR ou RRR
 	fant_a = malloc_init(fant_a, data->ac);
+	if (!fant_a)
+		return (-1);
 	fant_b = malloc_init(fant_b, data->ac);
-	if (fant_a && !fant_b)
+	if (!fant_b)
 	{
 		free(fant_a);
 		return (-1);
 	}
-	else if (!fant_a)
-		return (-1);
 	b_pas_zero(fant_a, data->ac);
 	b_pas_zero(fant_b, data->ac);
 	copy_stack(fant_a, stack_a, data->ac);
 	copy_stack(fant_b, stack_b, data->ac);
 	data->tmp_tmp = initialize_count_for_rr_rrr(data);
-	while (fant_b[0] != to_push && data->tmp_tmp > 1)
-		fant_b[0] = *rfb_or_rrfb(fant_b, data);
-	while (data->tmp_tmp > 1)
-		fant_a[0] = *rfa_or_rrfa(fant_a, data);
-	push_a(fant_a, fant_b, data->ac, 0);
+	check_moves(fant_a, fant_b, data, to_push);
 	//partie 2: execution
-	while (stack_b[0] != to_push && data->count_tmp > 1)
-		exec_moves_b(stack_a, stack_b, data);
-	while (data->count_tmp > 1)
-		exec_moves_a(stack_a, data);
-	push_a(stack_a, stack_b, data->ac, 1);
-	free(fant_a);
-	free(fant_b);
+	exec_moves(stack_a, stack_b, data, to_push);
+	double_free(fant_a, fant_b);
 	return (1);
 }

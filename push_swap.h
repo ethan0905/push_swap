@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 17:47:14 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 18:16:51 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,6 @@ void	b_pas_zero(long int *tab, int ac);
 long int	*malloc_init(long int *tab, int ac);
 void	copy_stack(long int *dest, long int *src, int ac);
 long int	*sort_stack(long int *fant, t_data *data);
+void	double_free(long int *stack_a, long int *stack_b);
 
 #endif

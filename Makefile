@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/25 17:27:06 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/25 18:17:13 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS = push_swap.c \
 	   ./solve/make_all/insert_sort.c \
 	   ./solve/make_all/ra_or_rra.c \
 	   ./solve/make_all/pb_rb.c \
+	   ./solve/make_all/double_free.c \
 	   ./solve/check_and_error/check_and_error.c
 
 LIBFT = ./libft/ft_putchar_fd.c \

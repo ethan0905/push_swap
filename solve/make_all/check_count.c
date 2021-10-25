@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 17:07:37 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/25 18:30:32 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,14 @@ int	get_ca(long int *fant_a, t_data *data, int value, int remain_a)
 	return (ca);
 }
 
+void	initialize_values(t_data *data, int remain_a)
+{
+	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
+	remain_a = data->ac - 1 - data->remain_b;
+	data->med_a = remain_a / 2;
+	data->med_b = data->remain_b / 2;
+}
+
 int	check_count(long int *stack_a, long int *stack_b,
 		long int value, t_data *data)
 {
@@ -115,6 +123,7 @@ int	check_count(long int *stack_a, long int *stack_b,
 	b_pas_zero(fant_b, data->ac);
 	copy_stack(fant_b, stack_b, data->ac);
 	initialize_s3(&need_space);
+//	initialize_values(data, remain_a);
 	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
 	remain_a = data->ac - 1 - data->remain_b;
 	data->med_a = remain_a / 2;
@@ -125,7 +134,6 @@ int	check_count(long int *stack_a, long int *stack_b,
 	need_space.cb = get_cb(fant_b, data, value);
 	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
 	need_space.ca = get_ca(fant_a, data, value, remain_a);
-	free(fant_a);
-	free(fant_b);
+	double_free(fant_a, fant_b);
 	return (need_space.ca + need_space.cb + 1);
 }
