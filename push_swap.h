@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 12:11:49 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 14:09:48 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ typedef struct s_iterator{
 }	t_iter;
 
 typedef struct s_need_space{
-	int ca;
-	int cb;
+	int	ca;
+	int	cb;
 }	t_need_space;
 
 //OPERATIONS
@@ -121,7 +121,7 @@ void	initialize(t_data *data, int ac);
 void	initialize_s2(t_iter *iter);
 void	initialize_s3(t_need_space *need_space);
 void	b_pas_zero(long int *tab, int ac);
-long int	*malloc_init(long int *tab, int ac);
+long	int	*malloc_init(long int *tab, int ac);
 void	initialize_s1_s2(t_data *data, t_iter *iter, int ac);
 void	initialize_stack(long int *fant, long int *stack, int ac);
 
@@ -132,7 +132,8 @@ void	print_table(long int *stack_a, long int *stack_b);
 int		solve(long int *stack_a, long int *stack_b, int ac);
 void	copy_stack(long int *dest, long int *src, int ac);
 long	int	*sort_stack(long int *fant, t_data *data);
-long	int *copy_and_sort(long int *fant, long int *stack, t_data *data, int ac);
+long	int	*copy_and_sort(long int *fant, long int *stack, t_data *data, int
+			 ac);
 
 void	make_two(long int *stack_a);
 void	make_three(long int *stack_a);
@@ -172,8 +173,8 @@ int		under_max_of_stack(long int *fant_a,
 int		under_top_of_stack(long int *fant_a,
 			t_data *data, int value, int remain_a);
 
-void	do_insert_sort(long int *stack_a, long int *stack_b, t_data *data, int ac);
-int		insert_sort(long int *stack_a, long int *stack_b, t_data *data);
+void	do_insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter);
+int		insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter);
 int		ra_or_rra(long int *stack, int elem, t_data *data);
 int		save_best_value_and_count(long int *stack_b,
 			t_data *data, int to_push, int i);
@@ -188,12 +189,14 @@ void	exec_moves_b(long int *stack_a, long int *stack_b, t_data *data);
 void	exec_moves_a(long int *stack_a, t_data *data);
 
 int		ra_or_rra(long int *stack, int elem, t_data *data);
+long	int	*rfa_or_rrfa(long int *fant_a, t_data *data);
+long	int	*rfb_or_rrfb(long int *fant_b, t_data *data);
 
 //UTILS
 void	b_pas_zero(long int *tab, int ac);
-long int	*malloc_init(long int *tab, int ac);
+long	int	*malloc_init(long int *tab, int ac);
 void	copy_stack(long int *dest, long int *src, int ac);
-long int	*sort_stack(long int *fant, t_data *data);
+long	int	*sort_stack(long int *fant, t_data *data);
 int		free_(long int *stack);
 int		double_free(long int *stack_a, long int *stack_b);
 

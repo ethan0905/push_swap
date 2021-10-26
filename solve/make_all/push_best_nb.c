@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:03:13 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 18:19:35 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:54:39 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,39 +56,8 @@ void	exec_moves_a(long int *stack_a, t_data *data)
 	data->count_tmp--;
 }
 
-long int	*rfb_or_rrfb(long int *fant_b, t_data *data)
-{
-	if (data->rb == 1 && data->rrb == 0)
-	{
-		rotate_b(fant_b, 0);
-		data->count_rb++;
-	}
-	else if (data->rrb == 1 && data->rb == 0)
-	{
-		reverse_b(fant_b, 0);
-		data->count_rrb++;
-	}
-	data->tmp_tmp--;
-	return (fant_b);
-}
-
-long int	*rfa_or_rrfa(long int *fant_a, t_data *data)
-{
-	if (data->ra == 1 && data->rra == 0)
-	{
-		rotate_a(fant_a, 0);
-		data->count_ra++;
-	}
-	else if (data->ra == 0 && data->rra == 1)
-	{
-		reverse_a(fant_a, 0);
-		data->count_rra++;
-	}
-	data->tmp_tmp--;
-	return (fant_a);
-}
-
-void	check_moves(long int *fant_a, long int *fant_b, t_data *data, int to_push)
+void	check_moves(long int *fant_a, long int
+		*fant_b, t_data *data, int to_push)
 {
 	while (fant_b[0] != to_push && data->tmp_tmp > 1)
 		fant_b[0] = *rfb_or_rrfb(fant_b, data);
@@ -97,7 +66,8 @@ void	check_moves(long int *fant_a, long int *fant_b, t_data *data, int to_push)
 	push_a(fant_a, fant_b, data->ac, 0);
 }
 
-void	exec_moves(long int *stack_a, long int *stack_b, t_data *data, int to_push)
+void	exec_moves(long int *stack_a, long int
+		*stack_b, t_data *data, int to_push)
 {
 	while (stack_b[0] != to_push && data->count_tmp > 1)
 		exec_moves_b(stack_a, stack_b, data);

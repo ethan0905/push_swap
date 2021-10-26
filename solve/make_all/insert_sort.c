@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:34:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 16:49:30 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 14:16:12 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,33 @@ void	reorder_the_stack(long int *stack_a, t_data *data)
 	}
 }
 
-int	insert_sort(long int *stack_a, long int *stack_b, t_data *data)
+t_iter	init_iter(t_iter iter)
 {
-	int	i;
-	int	to_push;
+	iter.i = 0;
+	iter.x = 0;
+	return (iter);
+}
+
+int	insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter)
+{
 	int	count;
 
 	data->count_tmp = 0;
 	while (data->remain_b > 0)
 	{
-		i = 0;
+		iter = init_iter(iter);
 		data->tmp = 999999999;
-		to_push = 0;
-		while (i < data->remain_b)
+		while (iter.i < data->remain_b)
 		{
-			data->count_tmp = check_count(stack_a, stack_b, stack_b[i], data);
+			data->count_tmp = check_count(stack_a, stack_b, stack_b[iter.i], data);
 			if (data->count_tmp < 0)
 				return (-1);
 			if (data->count_tmp < data->tmp)
-				to_push = save_best_value_and_count(stack_b, data, to_push, i);
-			i++;
+				iter.x = save_best_value_and_count(stack_b, data, iter.x, iter.i);
+			iter.i++;
 		}
 		data->count_tmp = data->tmp;
-		if(push_best_nb(stack_a, stack_b, data, to_push) < 0)
+		if (push_best_nb(stack_a, stack_b, data, iter.x) < 0)
 			return (-1);
 		data->remain_b--;
 	}

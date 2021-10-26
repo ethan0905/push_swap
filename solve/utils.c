@@ -6,13 +6,13 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:24:36 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 17:17:59 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:44:35 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-long int *malloc_init(long int *tab, int ac)
+long int	*malloc_init(long int *tab, int ac)
 {
 	tab = (long int *)malloc(sizeof(long int) * (ac));
 	if (!tab)
@@ -71,7 +71,8 @@ long int	*sort_stack(long int *fant, t_data *data)
 	return (fant);
 }
 
-long int *copy_and_sort(long int *fant, long int *stack, t_data *data, int ac)
+long int	*copy_and_sort(long int *fant, long int
+		*stack, t_data *data, int ac)
 {
 	copy_stack(fant, stack, ac);
 	sort_stack(fant, data);

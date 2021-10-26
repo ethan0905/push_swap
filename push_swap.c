@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 12:13:49 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 13:36:54 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	print_table(long int *stack_a, long int *stack_b)
 	printf(" 		STACK A               STACK B\n");
 }
 
-int is_number(char *str)
+int	is_number(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
@@ -66,9 +66,9 @@ int is_number(char *str)
 	return (1);
 }
 
-int check_if_only_numbers(int ac, char **av, long int *stack_a)
+int	check_if_only_numbers(int ac, char **av, long int *stack_a)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < ac)

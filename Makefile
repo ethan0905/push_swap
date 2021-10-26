@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/26 10:48:29 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/26 13:52:13 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS = push_swap.c \
 	   ./solve/make_all/get_ca.c \
 	   ./solve/make_all/insert_sort.c \
 	   ./solve/make_all/ra_or_rra.c \
+	   ./solve/make_all/rfx_or_rrfx.c \
 	   ./solve/make_all/pb_rb.c \
 	   ./solve/make_all/free_alias.c \
 	   ./solve/check_and_error/check_and_error.c

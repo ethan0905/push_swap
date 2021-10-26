@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:24:51 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 17:50:35 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 14:09:36 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	search_already_sorted_list(long int *stack_a, long int *list,
 }
 
 void	do_insert_sort(long int *stack_a, long int *stack_b,
-		t_data *data, int ac)
+		t_data *data, t_iter iter)
 {
-	data->remain_b = ac - 3;
+	data->remain_b = data->ac - 3;
 	make_two(stack_a);
-	insert_sort(stack_a, stack_b, data);
+	insert_sort(stack_a, stack_b, data, iter);
 }
 
 int	make_all(long int *stack_a, long int *stack_b, int ac)
@@ -95,7 +95,7 @@ int	make_all(long int *stack_a, long int *stack_b, int ac)
 			push_b(stack_a, stack_b, ac, 1);
 		iter.x++;
 	}
-	do_insert_sort(stack_a, stack_b, &data, ac);
+	do_insert_sort(stack_a, stack_b, &data, iter);
 	free(fant);
 	return (1);
 }
