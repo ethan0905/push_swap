@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:18:24 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 16:34:25 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 17:25:37 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,15 @@ int	verif_stack(long int *stack_a, long int *stack_b, t_data *data)
 	else if (already_sorted(stack_a, data->ac) < 0)
 		ft_putstr_fd("OK\n", 1);
 	else if (already_sorted(stack_a, data->ac) > 0)
-		ft_putstr_fd("KO\n", 1);
+	{
+/*		printf("stack_a[0] = %ld\n", stack_a[0]);
+		printf("stack_a[1] = %ld\n", stack_a[1]);
+		printf("stack_a[2] = %ld\n", stack_a[2]);
+		printf("stack_a[3] = %ld\n", stack_a[3]);
+		printf("stack_a[4] = %ld\n", stack_a[4]);
+		printf("\nstack_b[0] = %ld\n", stack_b[0]);
+		ft_putstr_fd("KO\n", 1);*/
+	}
 	return (0);
 }
 
@@ -94,7 +102,21 @@ void	do_operation(long int *stack_a, long int *stack_b, char *buff, t_data *data
 	else if (compare(buff, "rrr\n"))
 		reverse_ab(stack_a, stack_b, 0);
 	else if (compare(buff, "pa\n"))
+	{	
+		printf("stack_a[0] = %ld\n", stack_a[0]);
+		printf("stack_a[1] = %ld\n", stack_a[1]);
+		printf("stack_a[2] = %ld\n", stack_a[2]);
+		printf("stack_a[3] = %ld\n", stack_a[3]);
+		printf("stack_a[4] = %ld\n", stack_a[4]);
+		printf("\nstack_b[0] = %ld\n", stack_b[0]);
 		push_a(stack_a, stack_b, data->ac, 0);
+		printf("stack_a[0] = %ld\n", stack_a[0]);
+		printf("stack_a[1] = %ld\n", stack_a[1]);
+		printf("stack_a[2] = %ld\n", stack_a[2]);
+		printf("stack_a[3] = %ld\n", stack_a[3]);
+		printf("stack_a[4] = %ld\n", stack_a[4]);
+		printf("\nstack_b[0] = %ld\n", stack_b[0]);
+	}
 	else if (compare(buff, "pb\n"))
 		push_b(stack_a, stack_b, data->ac, 0);
 	else
@@ -125,6 +147,12 @@ int	checker(long int *stack_a, long int *stack_b, int ac)
 		}
 		buff[i] = 0;
 		do_operation(stack_a, stack_b, buff, &data);
+/*		printf("stack_a[0] = %ld\n", stack_a[0]);
+		printf("stack_a[1] = %ld\n", stack_a[1]);
+		printf("stack_a[2] = %ld\n", stack_a[2]);
+		printf("stack_a[3] = %ld\n", stack_a[3]);
+		printf("stack_a[4] = %ld\n", stack_a[4]);
+		printf("\nstack_b[0] = %ld\n", stack_b[0]);*/
 	}
 }
 
