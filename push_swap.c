@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 12:11:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 12:10:42 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 12:13:49 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int check_if_only_numbers(int ac, char **av, long int *stack_a)
 	{
 		if (is_number(av[i]) < 0)
 		{
-			printf("av[i] = %s\n", av[i]);
 			ft_putstr_fd("Error\n", 2);
 			return (free_(stack_a));
 		}
