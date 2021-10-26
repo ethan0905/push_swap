@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:18:24 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 16:01:17 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 16:34:25 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,23 @@ int	compare(char *s1, char *s2)
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
-	if (s1[i] = 0 && s2[i] == 0)
+	if (s1[i] == 0 && s2[i] == 0)
 		return (1);
 	return (0);
 }
 
-void	do_operation(long int *stack_a, long int *stack_b, char *buff, int ac)
+int	verif_stack(long int *stack_a, long int *stack_b, t_data *data)
+{
+	if (data->tmp < 0)
+		ft_putstr_fd("Error\n", 2);
+	else if (already_sorted(stack_a, data->ac) < 0)
+		ft_putstr_fd("OK\n", 1);
+	else if (already_sorted(stack_a, data->ac) > 0)
+		ft_putstr_fd("KO\n", 1);
+	return (0);
+}
+
+void	do_operation(long int *stack_a, long int *stack_b, char *buff, t_data *data)
 {
 	if (compare(buff, "sa\n"))
 		swap_a(stack_a, 0);
@@ -83,17 +94,23 @@ void	do_operation(long int *stack_a, long int *stack_b, char *buff, int ac)
 	else if (compare(buff, "rrr\n"))
 		reverse_ab(stack_a, stack_b, 0);
 	else if (compare(buff, "pa\n"))
-		push_a(stack_a, stack_b, ac, 0);
+		push_a(stack_a, stack_b, data->ac, 0);
 	else if (compare(buff, "pb\n"))
-		push_b(stack_a, stack_b, ac, 0);
+		push_b(stack_a, stack_b, data->ac, 0);
+	else
+		data->tmp = -1;
 }
 
-void	checker(long int *stack_a, long int *stack_b, int ac)
+int	checker(long int *stack_a, long int *stack_b, int ac)
 {
 	int		i;
 	int		op;
+	t_data	data;
 	char	buff[1000];
 
+	initialize(&data, ac);
+	data.ac = ac;
+	data.tmp = 1;
 	while (1)
 	{
 		i = 0;
@@ -104,10 +121,10 @@ void	checker(long int *stack_a, long int *stack_b, int ac)
 			if (op < -1)
 				return (-1);
 			if (op == 0)
-				return (verif_stack(stack_a, stack_b));
+				return (verif_stack(stack_a, stack_b, &data));
 		}
 		buff[i] = 0;
-		do_operation(stack_a, stack_b, buff, ac);
+		do_operation(stack_a, stack_b, buff, &data);
 	}
 }
 
