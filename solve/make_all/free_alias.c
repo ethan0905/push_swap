@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 18:11:46 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 10:47:47 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 12:11:12 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	free_(long int *stack)
 	return (-1);
 }
 
-void	double_free(long int *fant_a, long int *fant_b)
+int	double_free(long int *fant_a, long int *fant_b)
 {
 	free(fant_a);
 	free(fant_b);
+	return (0);
 }

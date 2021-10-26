@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 10:46:20 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 12:11:49 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	case_34xx(long int *stack_a);
 void	case_4xxx(long int *stack_a);
 
 //CHECK DES ERREURS
-int		ft_error(long int *stack_a, long int *stack_b, int print);
+int		ft_error(long int *stack_a, int print);
 int		check_tab(long int *stack_a, int size);
 int		already_sorted(long int *stack_a, int size);
 
@@ -195,6 +195,6 @@ long int	*malloc_init(long int *tab, int ac);
 void	copy_stack(long int *dest, long int *src, int ac);
 long int	*sort_stack(long int *fant, t_data *data);
 int		free_(long int *stack);
-void	double_free(long int *stack_a, long int *stack_b);
+int		double_free(long int *stack_a, long int *stack_b);
 
 #endif

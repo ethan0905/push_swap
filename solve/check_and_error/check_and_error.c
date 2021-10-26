@@ -6,18 +6,17 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:47:40 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/21 16:48:51 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 11:50:03 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-int	ft_error(long int *stack_a, long int *stack_b, int print)
+int	ft_error(long int *stack_a, int print)
 {
 	if (print > 0)
 		ft_putstr_fd("Error\n", 2);
 	free(stack_a);
-	free(stack_b);
 	return (-1);
 }
 
