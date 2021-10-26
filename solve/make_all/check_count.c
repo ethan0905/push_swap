@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 18:30:32 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/26 10:51:31 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,6 @@ int	get_ca(long int *fant_a, t_data *data, int value, int remain_a)
 	return (ca);
 }
 
-void	initialize_values(t_data *data, int remain_a)
-{
-	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
-	remain_a = data->ac - 1 - data->remain_b;
-	data->med_a = remain_a / 2;
-	data->med_b = data->remain_b / 2;
-}
-
 int	check_count(long int *stack_a, long int *stack_b,
 		long int value, t_data *data)
 {
@@ -114,16 +106,10 @@ int	check_count(long int *stack_a, long int *stack_b,
 		return (-1);
 	fant_b = malloc_init (fant_b, data->ac);
 	if (!fant_b)
-	{
-		free(fant_a);
-		return (-1);
-	}
-	b_pas_zero(fant_a, data->ac);
-	copy_stack(fant_a, stack_a, data->ac);
-	b_pas_zero(fant_b, data->ac);
-	copy_stack(fant_b, stack_b, data->ac);
+		return (free_(fant_a));
+	initialize_stack(fant_a, stack_a, data->ac);
+	initialize_stack(fant_b, stack_b, data->ac);
 	initialize_s3(&need_space);
-//	initialize_values(data, remain_a);
 	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
 	remain_a = data->ac - 1 - data->remain_b;
 	data->med_a = remain_a / 2;
