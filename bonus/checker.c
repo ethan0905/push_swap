@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:18:24 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 17:25:37 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/27 11:02:54 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_number(char *str)
 	return (1);
 }
 
-int	check_if_only_numbers(int ac, char **av, long int *stack_a)
+int	check_if_only_numbers(int ac, char **av)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	check_if_only_numbers(int ac, char **av, long int *stack_a)
 		if (is_number(av[i]) < 0)
 		{
 			ft_putstr_fd("Error\n", 2);
-			return (free_(stack_a));
+			return (-1);
 		}
 		i++;
 	}
@@ -66,19 +66,59 @@ int	verif_stack(long int *stack_a, long int *stack_b, t_data *data)
 {
 	if (data->tmp < 0)
 		ft_putstr_fd("Error\n", 2);
-	else if (already_sorted(stack_a, data->ac) < 0)
+	else if (already_sorted(stack_a, data->ac - 1) < 0)
 		ft_putstr_fd("OK\n", 1);
-	else if (already_sorted(stack_a, data->ac) > 0)
-	{
-/*		printf("stack_a[0] = %ld\n", stack_a[0]);
-		printf("stack_a[1] = %ld\n", stack_a[1]);
-		printf("stack_a[2] = %ld\n", stack_a[2]);
-		printf("stack_a[3] = %ld\n", stack_a[3]);
-		printf("stack_a[4] = %ld\n", stack_a[4]);
-		printf("\nstack_b[0] = %ld\n", stack_b[0]);
-		ft_putstr_fd("KO\n", 1);*/
-	}
+	else if (already_sorted(stack_a, data->ac - 1) > 0)
+		ft_putstr_fd("KO\n", 1);
 	return (0);
+}
+
+void	push_b(long int *stack_a, long int *stack_b, int ac, int print)
+{
+	int	i;
+
+	i = ac - 1;
+	while (i >= 0)
+	{
+		stack_b[i + 1] = stack_b[i];
+		if (i == 0)
+			stack_b[0] = stack_a[0];
+		i--;
+	}
+	i = 0;
+	while (i < ac - 1)
+	{
+		stack_a[i] = stack_a[i + 1];
+		i++;
+	}
+	stack_a[i] = 3000000000;
+	if (print == 1)
+		ft_putstr_fd("pb\n", 1);
+}
+
+void	push_a(long int *stack_a, long int *stack_b, int ac, int print)
+{
+	int	i;
+	int b;
+
+	i = ac - 1;
+	b = stack_b[0];
+	while (i >= 0)
+	{
+		stack_a[i + 1] = stack_a[i];
+		if (i == 0)
+			stack_a[0] = b;
+		i--;
+	}
+	i = 0;
+	while (i < ac - 1)
+	{
+		stack_b[i] = stack_b[i + 1];
+		i++;
+	}
+	stack_b[i] = 3000000000;
+	if (print == 1)
+		ft_putstr_fd("pa\n", 1);
 }
 
 void	do_operation(long int *stack_a, long int *stack_b, char *buff, t_data *data)
@@ -102,21 +142,7 @@ void	do_operation(long int *stack_a, long int *stack_b, char *buff, t_data *data
 	else if (compare(buff, "rrr\n"))
 		reverse_ab(stack_a, stack_b, 0);
 	else if (compare(buff, "pa\n"))
-	{	
-		printf("stack_a[0] = %ld\n", stack_a[0]);
-		printf("stack_a[1] = %ld\n", stack_a[1]);
-		printf("stack_a[2] = %ld\n", stack_a[2]);
-		printf("stack_a[3] = %ld\n", stack_a[3]);
-		printf("stack_a[4] = %ld\n", stack_a[4]);
-		printf("\nstack_b[0] = %ld\n", stack_b[0]);
 		push_a(stack_a, stack_b, data->ac, 0);
-		printf("stack_a[0] = %ld\n", stack_a[0]);
-		printf("stack_a[1] = %ld\n", stack_a[1]);
-		printf("stack_a[2] = %ld\n", stack_a[2]);
-		printf("stack_a[3] = %ld\n", stack_a[3]);
-		printf("stack_a[4] = %ld\n", stack_a[4]);
-		printf("\nstack_b[0] = %ld\n", stack_b[0]);
-	}
 	else if (compare(buff, "pb\n"))
 		push_b(stack_a, stack_b, data->ac, 0);
 	else
@@ -147,12 +173,6 @@ int	checker(long int *stack_a, long int *stack_b, int ac)
 		}
 		buff[i] = 0;
 		do_operation(stack_a, stack_b, buff, &data);
-/*		printf("stack_a[0] = %ld\n", stack_a[0]);
-		printf("stack_a[1] = %ld\n", stack_a[1]);
-		printf("stack_a[2] = %ld\n", stack_a[2]);
-		printf("stack_a[3] = %ld\n", stack_a[3]);
-		printf("stack_a[4] = %ld\n", stack_a[4]);
-		printf("\nstack_b[0] = %ld\n", stack_b[0]);*/
 	}
 }
 
@@ -162,7 +182,7 @@ int	main(int ac, char **av)
 	long int	*stack_a;
 	long int	*stack_b;
 
-	if (check_if_only_numbers(ac, av, stack_a) < 0)
+	if (check_if_only_numbers(ac, av) < 0)
 		return (-1);
 	stack_a = malloc_init(stack_a, ac);
 	if (!stack_a)
