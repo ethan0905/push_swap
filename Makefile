@@ -6,11 +6,13 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/26 13:52:13 by esafar           ###   ########.fr        #
+#    Updated: 2021/10/27 11:26:25 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+
+CHECKER = checker
 
 SRCS = push_swap.c \
 	   solve.c \
@@ -44,6 +46,15 @@ SRCS = push_swap.c \
 	   ./solve/make_all/free_alias.c \
 	   ./solve/check_and_error/check_and_error.c
 
+C_SRCS = ./bonus/checker.c \
+			   ./solve/operations/swap.c \
+	 ./solve/operations/rotate.c \
+	   ./solve/operations/reverse.c \
+	   ./solve/make_all/free_alias.c \
+	   ./solve/initialize.c \
+	   ./solve/utils.c \
+	   ./solve/check_and_error/check_and_error.c
+
 LIBFT = ./libft/ft_putchar_fd.c \
 		./libft/ft_atoi.c \
 		./libft/ft_putstr_fd.c \
@@ -53,21 +64,23 @@ LIBFT = ./libft/ft_putchar_fd.c \
 
 OBJS = ${SRCS:.c=.o} ${LIBFT:.c=.o}
 
+C_OBJS = ${C_SRCS:.c=.o} ${LIBFT:.c=.o}
+
 #CFLAGS = -Wall -Wextra -Werror
 
-all:	${NAME}
-	rm -f ${OBJS}
+all:	${NAME} ${CHECKER}
+	rm -f ${OBJS} ${C_OBJS}
 
-.c.o:
-	gcc ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME): ${OBJS}
+	gcc ${CFLAGS} ${OBJS} -o ${NAME}
 
-${NAME}: ${OBJS}
-#	ar rcs ${NAME} ${OBJS}
+$(CHECKER): ${C_OBJS}
+	gcc ${CFLAGS} ${C_OBJS} -o ${CHECKER}
 
 clean:
-	rm -f ${OBJS}
+	rm -f ${OBJS} #${CHECKER_OBJS}
 
 fclean:
-	rm -f ${NAME} ${OBJS}
+	rm -f ${NAME} ${OBJS}# ${CHECKER} ${CHECKER_OBJS}
 
 re: fclean all
