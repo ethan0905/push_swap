@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 11:03:13 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 13:54:39 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/29 14:30:45 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,10 @@ int	push_best_nb(long int *stack_a, long int *stack_b,
 	long int	*fant_a;
 	long int	*fant_b;
 
-	//partie 1:test pour savoir si double RR ou RRR
-	fant_a = malloc_init(fant_a, data->ac);
+	fant_a = (long int *)malloc(sizeof(long int) * (data->ac + 1));
 	if (!fant_a)
 		return (-1);
-	fant_b = malloc_init(fant_b, data->ac);
+	fant_b = (long int *)malloc(sizeof(long int) * (data->ac + 1));
 	if (!fant_b)
 	{
 		free(fant_a);
@@ -98,7 +97,6 @@ int	push_best_nb(long int *stack_a, long int *stack_b,
 	copy_stack(fant_b, stack_b, data->ac);
 	data->tmp_tmp = initialize_count_for_rr_rrr(data);
 	check_moves(fant_a, fant_b, data, to_push);
-	//partie 2: execution
 	exec_moves(stack_a, stack_b, data, to_push);
 	double_free(fant_a, fant_b);
 	return (1);

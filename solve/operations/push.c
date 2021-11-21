@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 16:00:46 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 12:40:20 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/27 15:54:02 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ void	push_b(long int *stack_a, long int *stack_b, int ac, int print)
 void	push_a(long int *stack_a, long int *stack_b, int ac, int print)
 {
 	int	i;
+	int	b;
 
 	i = ac - 1;
+	b = stack_b[0];
 	while (i >= 0)
 	{
 		stack_a[i + 1] = stack_a[i];
 		if (i == 0)
-			stack_a[0] = stack_b[0];
+			stack_a[0] = b;
 		i--;
 	}
 	i = 0;

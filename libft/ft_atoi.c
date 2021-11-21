@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 10:53:24 by esafar            #+#    #+#             */
-/*   Updated: 2021/06/04 09:24:19 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/31 12:46:48 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	ft_isspace(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\n' || c == '\f' || c == '\r')
+	if (c == ' ' || c == '\t' || c == '\v' || c == '\n'
+		|| c == '\f' || c == '\r')
 		return (1);
 	return (0);
 }
@@ -33,11 +34,11 @@ static int	ft_issymbol(char c)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
 	int				i;
 	int				sign;
-	unsigned int	res;
+	long int		res;
 
 	i = 0;
 	sign = 1;
@@ -52,12 +53,8 @@ int	ft_atoi(const char *str)
 	}
 	while (ft_isnumber(str[i]))
 	{
-		res = res * 10 + (unsigned int)(str[i] - '0');
-		if (res > 2147483648 && sign < 0)
-			return (0);
-		else if (res > 2147483647 && sign > 0)
-			return (-1);
+		res = res * 10 + (long int)(str[i] - '0');
 		i++;
 	}
-	return ((unsigned)sign * res);
+	return ((long int)sign * res);
 }

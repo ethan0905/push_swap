@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:34:17 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 14:16:12 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/27 15:40:02 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	save_best_value_and_count(long int *stack_b, t_data *data,
 	data->rra = data->rra_tmp;
 	data->rrb = data->rrb_tmp;
 	data->tmp = data->count_tmp;
-	to_push = stack_b[i]; // avant : tmp = stack_b[0], une erreur a 35 000 operations
+	to_push = stack_b[i];
 	return (to_push);
 }
 
@@ -44,8 +44,6 @@ t_iter	init_iter(t_iter iter)
 
 int	insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter)
 {
-	int	count;
-
 	data->count_tmp = 0;
 	while (data->remain_b > 0)
 	{
@@ -53,11 +51,13 @@ int	insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter)
 		data->tmp = 999999999;
 		while (iter.i < data->remain_b)
 		{
-			data->count_tmp = check_count(stack_a, stack_b, stack_b[iter.i], data);
+			data->count_tmp = check_count(stack_a, stack_b,
+					stack_b[iter.i], data);
 			if (data->count_tmp < 0)
 				return (-1);
 			if (data->count_tmp < data->tmp)
-				iter.x = save_best_value_and_count(stack_b, data, iter.x, iter.i);
+				iter.x = save_best_value_and_count(stack_b, data,
+						iter.x, iter.i);
 			iter.i++;
 		}
 		data->count_tmp = data->tmp;

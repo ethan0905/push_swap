@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 19:15:25 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/25 16:52:45 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/29 14:34:29 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	high_five(long int *stack_a, long int *stack_b, int ac)
 
 	i = 0;
 	initialize(&data, ac);
-	s_med = malloc_init(s_med, ac);
+	s_med = (long int *)malloc(sizeof(long int) * (ac + 1));
 	if (!s_med)
 		return (-1);
 	b_pas_zero(s_med, ac);
 	copy_stack(s_med, stack_a, ac);
-	find_min_and_max_in_stack(stack_a, stack_b, &data);
+	find_min_and_max_in_stack(stack_a, &data);
 	while (i < (ac - 1) && (s_med[0] != data.min_du_stack))
 	{
 		rotate_a(s_med, 0);

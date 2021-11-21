@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 15:47:40 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 11:50:03 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/31 12:20:32 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	already_sorted(long int *stack_a, int size)
 	{
 		if (stack_a[i] < stack_a[i + 1])
 			i++;
-		else if (!stack_a[i + 1])
+		else if (!(stack_a + i + 1))
 			return (-1);
 		else
 			return (1);

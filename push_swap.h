@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 16:17:47 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 14:09:48 by esafar           ###   ########.fr       */
+/*   Updated: 2021/11/03 14:44:19 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void	pb_rb(long int *stack_a, long int *stack_b, int ac);
 void	case_1xxx(long int *stack_a, long int *stack_b, int ac);
 
 void	case_21xx(long int *stack_a, long int *stack_b, int ac);
-void	case_23xx(long int *stack_a, long int *stack_b, int ac);
-void	case_24xx(long int *stack_a, long int *stack_b, int ac);
+void	case_23xx(long int *stack_a);
+void	case_24xx(long int *stack_a);
 
 void	case_31xx(long int *stack_a);
 void	case_32xx(long int *stack_a);
@@ -160,8 +160,7 @@ void	complete_pushing_all_bads_to_b(long int *stack_a,
 
 int		check_count(long int *stack_a,
 			long int *stack_b, long int value, t_data *data);
-void	find_min_and_max_in_stack(long int *stack_a,
-			long int *stack_b, t_data *data);
+void	find_min_and_max_in_stack(long int *stack_a, t_data *data);
 int		get_ca(long int *fant_a, t_data *data, int value, int remain_a);
 int		get_cb(long int *fant_b, t_data *data, int value);
 int		under_min_of_stack(long int *fant_a,
@@ -173,8 +172,10 @@ int		under_max_of_stack(long int *fant_a,
 int		under_top_of_stack(long int *fant_a,
 			t_data *data, int value, int remain_a);
 
-void	do_insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter);
-int		insert_sort(long int *stack_a, long int *stack_b, t_data *data, t_iter iter);
+void	do_insert_sort(long int *stack_a, long int
+			*stack_b, t_data *data, t_iter iter);
+int		insert_sort(long int *stack_a, long int
+			*stack_b, t_data *data, t_iter iter);
 int		ra_or_rra(long int *stack, int elem, t_data *data);
 int		save_best_value_and_count(long int *stack_b,
 			t_data *data, int to_push, int i);
@@ -200,4 +201,10 @@ long	int	*sort_stack(long int *fant, t_data *data);
 int		free_(long int *stack);
 int		double_free(long int *stack_a, long int *stack_b);
 
+//CHECKER
+int		compare(char *s1, char *s2);
+int		is_number(char *str);
+int		check_if_only_numbers(int ac, char **av);
+void	special_push_a(long int *stack_a, long int *stack_b, int ac, int print);
+void	special_push_b(long int *stack_a, long int *stack_b, int ac, int print);
 #endif

@@ -6,14 +6,13 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 12:08:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 13:49:25 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/29 14:30:27 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	find_min_and_max_in_stack(long int *stack_a,
-		long int *stack_b, t_data *data)
+void	find_min_and_max_in_stack(long int *stack_a, t_data *data)
 {
 	int			i;
 	long int	tmp;
@@ -101,24 +100,20 @@ int	check_count(long int *stack_a, long int *stack_b,
 	long int		*fant_b;
 	t_need_space	need_space;
 
-	fant_a = malloc_init (fant_a, data->ac);
+	fant_a = (long int *)malloc(sizeof(long int) * (data->ac + 1));
 	if (!fant_a)
 		return (-1);
-	fant_b = malloc_init (fant_b, data->ac);
+	fant_b = (long int *)malloc(sizeof(long int) * (data->ac + 1));
 	if (!fant_b)
 		return (free_(fant_a));
 	initialize_stack(fant_a, stack_a, data->ac);
 	initialize_stack(fant_b, stack_b, data->ac);
 	initialize_s3(&need_space);
-	//part 1 : recuperer ma median ainsi que la taille de mon stack_a
 	remain_a = data->ac - 1 - data->remain_b;
 	data->med_a = remain_a / 2;
 	data->med_b = data->remain_b / 2;
-	//part 2 : trouver mon min et max de A actuel
-	find_min_and_max_in_stack(fant_a, fant_b, data);
-	//part 3 : compter
+	find_min_and_max_in_stack(fant_a, data);
 	need_space.cb = get_cb(fant_b, data, value);
-	//deuxieme partie de l'algo:chercher le chemin le plus court pour placer stack_b[0]
 	need_space.ca = get_ca(fant_a, data, value, remain_a);
 	double_free(fant_a, fant_b);
 	return (need_space.ca + need_space.cb + 1);

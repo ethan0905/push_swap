@@ -6,7 +6,7 @@
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:24:51 by esafar            #+#    #+#             */
-/*   Updated: 2021/10/26 14:09:36 by esafar           ###   ########.fr       */
+/*   Updated: 2021/10/27 15:39:51 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	make_all(long int *stack_a, long int *stack_b, int ac)
 	t_iter		iter;
 	long int	*fant;
 
-	fant = malloc_init(fant, ac);
+	fant = (long int *)malloc(sizeof(long int) * ac);
 	if (!fant)
 		return (-1);
 	initialize_s1_s2(&data, &iter, ac);

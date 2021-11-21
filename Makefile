@@ -6,7 +6,7 @@
 #    By: esafar <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/20 16:19:49 by esafar            #+#    #+#              #
-#    Updated: 2021/10/27 11:26:25 by esafar           ###   ########.fr        #
+#    Updated: 2021/11/03 14:00:56 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,16 @@ SRCS = push_swap.c \
 	   ./solve/check_and_error/check_and_error.c
 
 C_SRCS = ./bonus/checker.c \
-			   ./solve/operations/swap.c \
-	 ./solve/operations/rotate.c \
-	   ./solve/operations/reverse.c \
-	   ./solve/make_all/free_alias.c \
-	   ./solve/initialize.c \
-	   ./solve/utils.c \
-	   ./solve/check_and_error/check_and_error.c
+		 ./bonus/check_number.c \
+		 ./bonus/special_push_a.c \
+		 ./solve/operations/push.c \
+		 ./solve/operations/swap.c \
+		 ./solve/operations/rotate.c \
+		 ./solve/operations/reverse.c \
+		 ./solve/make_all/free_alias.c \
+		 ./solve/initialize.c \
+		 ./solve/utils.c \
+		 ./solve/check_and_error/check_and_error.c
 
 LIBFT = ./libft/ft_putchar_fd.c \
 		./libft/ft_atoi.c \
@@ -66,21 +69,37 @@ OBJS = ${SRCS:.c=.o} ${LIBFT:.c=.o}
 
 C_OBJS = ${C_SRCS:.c=.o} ${LIBFT:.c=.o}
 
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
-all:	${NAME} ${CHECKER}
-	rm -f ${OBJS} ${C_OBJS}
+1		=   \033[38;5;87m
+2		=   \033[38;5;47m
+3		=   \033[38;5;247m
+4		=   \033[38;5;48m
+5		=	\e[38;5;231m
+
+all:	${NAME}
+	@printf "$(3)Initializing data..$(RESET)\n"
+	@sleep 0.4
+	@printf "$(4)OK$(RESET)\n"
+	@sleep 0.4
+
+	@printf "$(3)\nCompiling$(RESET)\n"
+	@sleep 0.4
+	@printf "$(4)OK$(RESET)\n"
+	@sleep 0.4
+	
+	@printf "\n$(1)[$(5)Compilation success!$(1)]\n$(RESET)"
 
 $(NAME): ${OBJS}
 	gcc ${CFLAGS} ${OBJS} -o ${NAME}
 
-$(CHECKER): ${C_OBJS}
+bonus: ${C_OBJS}
 	gcc ${CFLAGS} ${C_OBJS} -o ${CHECKER}
 
 clean:
-	rm -f ${OBJS} #${CHECKER_OBJS}
+	rm -f ${OBJS} ${C_OBJS}
 
 fclean:
-	rm -f ${NAME} ${OBJS}# ${CHECKER} ${CHECKER_OBJS}
+	rm -f ${NAME} ${OBJS} ${CHECKER} ${C_OBJS}
 
 re: fclean all
