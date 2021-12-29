@@ -1,8 +1,11 @@
 # push_swap
-pour 500 nombres, min : 4368 ✅‎‎‎‏‏‎ ‎‏‏‎
-125/125
+You're gonna need to order an random list of numbers, using two stacks. To do so, you're gonna manipulate the stakes using only allowed movements:  
+- swap  
+- rotate  
+- reverse  
+- push  
 
-# Preview
+## Preview
 
 https://user-images.githubusercontent.com/77629339/146821288-20e3957c-9d56-4786-9ad4-d90eab1e57be.mov
 
