@@ -1,4 +1,4 @@
-# push_swap
+# push_swap 🧮
 You're gonna need to order an random list of numbers, using two stacks. To do so, you're gonna manipulate the stakes using only allowed movements:  
 - swap  
 - rotate  
