@@ -15,6 +15,6 @@ Step 3: I am repeating the operation till there is no more number in B.
 ## Performances
 | | Required for 5/5 | Mine |
 | ------------- | ------------- | ------------- |
-| For 5 numbers:  | 12 moves | 5-11 moves |
-| For 100 numbers:  | 700 moves | 500-670 moves |
-| For 500 numbers:  | 5500 moves | 4300-4900 moves |
+| For 5 numbers:  | < 12 moves | 5-11 moves |
+| For 100 numbers:  | < 700 moves | 500-670 moves |
+| For 500 numbers:  | < 5500 moves | 4300-4900 moves |
