@@ -16,9 +16,9 @@ There is tons of sorting algorithms, but we want to work on one that gonna be en
 Everytime my algo need to select one number to sort, it calculate on all remaining numbers which one can be placed at the right place, in the less amount of moves. It takes it, and place it. Then, we iterating until there stack B is empty. We end up with fully sorted stack A.
 
 #### Step to follow for implementation of my IIS algorithm:   
-1. I am pushing all number from the stack A to the stack B. If that number is < to the median number of the final stack, I push it to B (pb) then I rotate it in order to make it goes under the stack (rb). Else, if that number is > to the median, I am simply pushing it to B (pb). This way, we have a pre-sorted stack on B, with 2 blocks of numbers, the big ones and the small ones.  
-2. I check the first number of my stack B (stackB[0]) and count how much moves I am gonna need in order to push it on right spot in A. Then I am checking how much moves I am going to need for pushing the stackB[1] in on the right spot in A, and so on... When I did this on all my stackB, I push to A only the one that needed the less amount of moves.  
-3. I am repeating the operation till there is no more number in B.  
+1. Push all number from the stack A to the stack B. If that number is < to the median number of the final stack, push it to B (pb) then rotate it in order to make it goes under the stack (rb). Else, if that number is > to the median, simply push it to B (pb). This way, we have a pre-sorted stack on B, with 2 blocks of numbers, the big ones and the small ones.  
+2. Check the first number of stack B (stackB[0]) and count how much moves you gonna need in order to push it on right spot in A. Then check how much moves you need to push the stackB[1] in on the right spot in A, and so on... When you did this on all stackB, push to A only the one that needed the less amount of moves.  
+3. Repeat the operation till there is no more number in B.  
 
 ## Performances  
   
