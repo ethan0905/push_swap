@@ -19,6 +19,7 @@ Everytime my algo need to select one number to sort, it calculate on all remaini
 1. Push all number from the stack A to the stack B. If that number is < to the median number of the final stack, push it to B (pb) then rotate it in order to make it goes under the stack (rb). Else, if that number is > to the median, simply push it to B (pb). This way, we have a pre-sorted stack on B, with 2 blocks of numbers, the big ones and the small ones.  
 2. Check the first number of stack B (stackB[0]) and count how much moves you gonna need in order to push it on right spot in A. Then check how much moves you need to push the stackB[1] in on the right spot in A, and so on... When you did this on all stackB, push to A only the one that needed the less amount of moves.  
 3. Repeat the operation till there is no more number in B.  
+4. Your stack A is fully sorted, your algo is strong, you can now drop a star on this repo ;)
 
 ## Performances  
   
