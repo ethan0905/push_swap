@@ -40,4 +40,10 @@ Everytime my algo need to select one number to sort, it calculate on all remaini
 
 ## ⚙️ How to run the project ?
 
-[work in progress]
+1. Clone the repository:  
+`git clone https://github.com/ethan0905/push_swap.git`  
+2. Compile the project:  
+`make -j`  
+3. Run the program:  
+`./push_swap 3 9 2 5 4 1 8 6`  
+4. Enjoy ;)  
