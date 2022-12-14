@@ -1,4 +1,5 @@
 # push_swap 🧮 [![esafar's 42 push_swap Score](https://badge42.vercel.app/api/v2/cl6l739qg00490gialxmtgsrk/project/2346756)](https://github.com/JaeSeoKim/badge42)
+## 🤏 Pitch
 You're gonna need to sort a random list of numbers, using two stacks and with the less amount of moves. To do so, you're gonna manipulate the stacks using only allowed movements: swap (sa, sb, ss), rotate (ra, rb, rr), reverse (rra, rrb, rrr) and push (pa, pb)
 
 ###### Read more [here](https://cdn.intra.42.fr/pdf/pdf/39493/en.subject.pdf)
