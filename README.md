@@ -45,5 +45,6 @@ Everytime my algo need to select one number to sort, it calculate on all remaini
 2. Compile the project:  
 `make -j`  
 3. Run the program:  
-`./push_swap 3 9 2 5 4 1 8 6`  
+`./push_swap 3 9 2 5 4 1 8 6` -> // if you want to get all instructions  
+`./push_swap 3 9 2 5 4 1 8 6 | wc -l` -> // if you want to get number of instructions  
 4. Enjoy ;)  
