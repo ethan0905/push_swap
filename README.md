@@ -8,8 +8,8 @@ You're gonna need to sort a random list of numbers, using two stacks and with th
 
  - [📺 Preview](#-preview)
  - [📈 Performance](#-performance)
- - [🧮 Algorithm: Intelligent Insertion Sort](#-preview)
- - [👣 Step-by-step to implement your own IIS](#-preview)
+ - [🧮 Algorithm: Intelligent Insertion Sort](#-algorithm-made-intelligent-insertion-sort)
+ - [👣 Step-by-step to implement your own IIS](#-step-by-step-instructions-to-follow-for-implementation-of-my-iis-algorithm)
  - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
