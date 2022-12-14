@@ -7,10 +7,10 @@ You're gonna need to sort a random list of numbers, using two stacks and with th
 ## 📔 Summary
 
  - [📺 Preview](#-preview)
- - [📈 Performance](#-preview)
+ - [📈 Performance](#-performance)
  - [🧮 Algorithm: Intelligent Insertion Sort](#-preview)
  - [👣 Step-by-step to implement your own IIS](#-preview)
- - [⚙️ How to run the project ?](#-preview)
+ - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
 
